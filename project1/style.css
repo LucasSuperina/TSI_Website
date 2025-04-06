@@ -6,7 +6,7 @@ main {
     
 }
 
-article {
+.about_left_profile {
     border: 4px inset black;
     background-color: aliceblue;
     border-radius: 14px;
@@ -22,18 +22,33 @@ article {
     display: flex;
     justify-content: space-around;
     justify-items: center;
-}
 
 
-.left_profile {
     float: left;
     clear: both;
 
     flex-direction: row-reverse;
+
 }
 
+.about_right_profile {
+    border: 4px inset black;
+    background-color: aliceblue;
+    border-radius: 14px;
 
-.right_profile {
+    margin-left: 5%;    
+    margin-right: 5%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    padding: 15px;
+    width: 65%;
+
+    display: flex;
+    justify-content: space-around;
+    justify-items: center;
+
+
     float: right;
     clear: both;
 
