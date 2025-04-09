@@ -407,7 +407,21 @@ button:hover {
 /*----------------------------------*/
 /*----------HOME PAGE, XXX----------*/
 
+.logo  {
 
+    
+   display: flex;
+   display: flex;
+   align-items: center; /* vertical centering */
+   
+   padding: 20px;
+
+}
+.logo img {
+
+    width: 5%;
+
+}
 
 
 /*----------------------------------*/
