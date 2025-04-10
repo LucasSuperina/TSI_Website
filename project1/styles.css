@@ -229,6 +229,10 @@ section
     padding: 20px;
 }
 
+.main-soup li {
+    text-align: left;
+}
+
 .soup-image {
     width: 15vw;
     height: 15vw;
@@ -239,6 +243,8 @@ section
 
     margin: auto;
 }
+
+
 
 .about_left_profile {
     border: 4px solid rgba(0, 0, 0, 0.52);
