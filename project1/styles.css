@@ -182,7 +182,7 @@ section
 
 .footer ul {
     display: flex;
-    gap: 250px;
+    gap: 15vw;
 }
 
 .footer ul li {
@@ -263,7 +263,6 @@ section
 
 
     clear: both;
-
 
     display: grid;
     gap: 20px;
