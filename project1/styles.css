@@ -223,6 +223,7 @@ section
 
 .main-soup {
     margin-top: 10vh;
+
     padding: 20px;
 }
 
@@ -239,7 +240,7 @@ section
 
 .about_left_profile {
     border: 4px solid rgba(0, 0, 0, 0.52);
-    background: rgba(0, 0, 0, 0.26);
+    background: rgba(0, 0, 0, 0.36);
     border-radius: 30px;
 
 
@@ -265,7 +266,7 @@ section
 
 .about_right_profile {
     border: 4px solid rgba(0, 0, 0, 0.52);
-    background: rgba(0, 0, 0, 0.26);
+    background: rgba(0, 0, 0, 0.36);
     border-radius: 30px;
 
 
