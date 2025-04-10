@@ -13,13 +13,13 @@ body.home{
     color: #ffffff;
     background-color: #e9ff99;
     background-image:
-        radial-gradient(at 9% 89%, hsl(216, 61%, 50%) 0px, transparent 50%),
-        radial-gradient(at 72% 6%, hsl(189, 79%, 57%) 0px, transparent 50%),
-        radial-gradient(at 24% 19%, hsl(30, 45%, 77%) 0px, transparent 50%),
-        radial-gradient(at 65% 6%, hsl(287, 86%, 68%) 0px, transparent 50%),
-        radial-gradient(at 20% 98%, hsl(263, 84%, 64%) 0px, transparent 50%),
+        radial-gradient(at 9% 89%, hsl(216, 45%, 43%) 0px, transparent 50%),
+        radial-gradient(at 72% 6%, hsl(189, 52%, 55%) 0px, transparent 50%),
+        radial-gradient(at 24% 19%, hsl(28, 63%, 76%) 0px, transparent 50%),
+        radial-gradient(at 65% 6%, hsl(287, 60%, 66%) 0px, transparent 50%),
+        radial-gradient(at 20% 98%, hsl(263, 47%, 63%) 0px, transparent 50%),
         radial-gradient(at 44% 9%, hsl(200, 26%, 56%) 0px, transparent 50%),
-        radial-gradient(at 10% 9%, hsl(76, 65%, 63%) 0px, transparent 50%);
+        radial-gradient(at 10% 9%, hsl(76, 60%, 60%) 0px, transparent 50%);
     min-height: 100vh;
 }
 
@@ -43,13 +43,13 @@ body.jobs{
     color: #ffffff;
     background-color: #e9ff99;
     background-image:
-        radial-gradient(at 9% 89%, hsl(215, 90%, 73%) 0px, transparent 50%),
-        radial-gradient(at 72% 6%, hsl(331, 74%, 64%) 0px, transparent 50%),
-        radial-gradient(at 24% 19%, hsl(14, 90%, 74%) 0px, transparent 50%),
-        radial-gradient(at 65% 6%, hsl(6, 79%, 76%) 0px, transparent 50%),
-        radial-gradient(at 20% 98%, hsl(316, 72%, 64%) 0px, transparent 50%),
-        radial-gradient(at 44% 9%, hsl(40, 96%, 77%) 0px, transparent 50%),
-        radial-gradient(at 10% 9%, hsl(76, 65%, 63%) 0px, transparent 50%);
+        radial-gradient(at 9% 89%, hsl(85, 54%, 59%) 0px, transparent 50%),
+        radial-gradient(at 72% 6%, hsl(151, 74%, 64%) 0px, transparent 50%),
+        radial-gradient(at 24% 19%, hsl(289, 69%, 65%) 0px, transparent 50%),
+        radial-gradient(at 65% 6%, hsl(46, 75%, 67%) 0px, transparent 50%),
+        radial-gradient(at 20% 98%, hsl(316, 67%, 62%) 0px, transparent 50%),
+        radial-gradient(at 44% 9%, hsl(145, 78%, 62%) 0px, transparent 50%),
+        radial-gradient(at 10% 9%, hsl(76, 55%, 59%) 0px, transparent 50%);
     min-height: 100vh;
 }
 
@@ -57,13 +57,13 @@ body.apply{
     color: #ffffff;
     background-color: #e9ff99;
     background-image:
-        radial-gradient(at 9% 89%, hsl(215, 90%, 73%) 0px, transparent 50%),
-        radial-gradient(at 72% 6%, hsl(331, 74%, 64%) 0px, transparent 50%),
-        radial-gradient(at 24% 19%, hsl(14, 90%, 74%) 0px, transparent 50%),
-        radial-gradient(at 65% 6%, hsl(6, 79%, 76%) 0px, transpsarent 50%),
-        radial-gradient(at 20% 98%, hsl(316, 72%, 64%) 0px, transparent 50%),
-        radial-gradient(at 44% 9%, hsl(40, 96%, 77%) 0px, transparent 50%),
-        radial-gradient(at 10% 9%, hsl(76, 65%, 63%) 0px, transparent 50%);
+        radial-gradient(at 9% 89%, hsl(215, 41%, 62%) 0px, transparent 50%),
+        radial-gradient(at 72% 6%, hsl(331, 43%, 58%) 0px, transparent 50%),
+        radial-gradient(at 24% 19%, hsl(14, 62%, 63%) 0px, transparent 50%),
+        radial-gradient(at 65% 6%, hsl(6, 41%, 57%) 0px, transparent 50%),
+        radial-gradient(at 20% 98%, hsl(316, 41%, 56%) 0px, transparent 50%),
+        radial-gradient(at 44% 9%, hsl(40, 46%, 62%) 0px, transparent 50%),
+        radial-gradient(at 10% 9%, hsl(76, 28%, 48%) 0px, transparent 50%);
     min-height: 100vh;
 }
 
@@ -187,6 +187,10 @@ section
 
 .footer ul li {
     list-style: none;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .image-wrapper {
