@@ -166,8 +166,8 @@ section
 {
     margin-top: 5vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
+    align-items: left;
     flex-direction: column;
     text-align: left;
 }
