@@ -281,6 +281,10 @@ body.about{
     float: right;
 }
 
+#table_heading {
+    font-size: 30px;
+}
+
 table {
     border-radius: 14px;
 
@@ -289,6 +293,8 @@ table {
     border-spacing: 0px;
 
     width: 100%;
+
+    text-align: center;
 }
 
 td, th {
@@ -333,34 +339,6 @@ tbody > tr:last-child > td:first-child, tbody > tr:last-child > th:first-child {
 tbody > tr:last-child > td:last-child, tbody > tr:last-child > th:last-child {
     border-bottom-right-radius: 14px;
 }
-
-/*
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-
-    empty-cells: show;
-}
-
-/*
-th {
-    color: #ffffff;
-    font-size: 15px;
-    font-weight: 600;
-    padding: 10px;
-    text-align: left;
-}
-
-td {
-    background-color: transparent;
-    color: #ffffff;
-    font-size: 15px;
-    font-weight: 300;
-    padding: 10px;
-    text-align: left;
-}
-*/
 
 /*----------------------------------*/
 /*----------APPLY PAGE, MAGGIE----------*/
