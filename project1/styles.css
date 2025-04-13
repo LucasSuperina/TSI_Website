@@ -135,6 +135,11 @@ body.about{
     min-height: 100vh;
 }
 
+#group_header {
+    min-width: 70vh;
+    text-align: center;
+}
+
 #skills_and_info {
     display: grid;
     grid-template-columns: 1fr 1fr;
