@@ -1,4 +1,4 @@
-/* Global Style, Maggie Xin Yi Law*/
+/* GLOBAL STYLE, MAGGIE XIN YI LAW*/
 
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
@@ -32,13 +32,6 @@ a {
     opacity: 0;
     transform: translateY(20px); 
     animation: floatUp 0.5s ease-out forwards; 
-}
-
-.logo {
-    display: inline-block;
-    font-size: 30px;
-    font-weight: 600;
-    margin-top: -10px;
 }
 
 ul.nav-links {
@@ -80,12 +73,6 @@ li.nav-link {
     line-height: 23px;
 }
 
-caption {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-
 section
 {
     margin-top: 5vh;
@@ -94,6 +81,24 @@ section
     align-items: left;
     flex-direction: column;
     text-align: left;
+}
+
+button { /* Submit button */
+    margin-top: 10px;
+    width: 100%;
+    height: 40px;
+    font-size: 15px;
+    color: #ffffff;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    cursor:pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #ffffff;
+    color: #000000;
 }
 
 .footer {
@@ -117,32 +122,32 @@ section
     margin-bottom: 10px auto;
 }
 
-.image-wrapper {
-    display: flex;
-    margin-top: 5vh;
-    position: relative;
+@media screen and (max-width: 720px) { /* Responsive styles for smaller screens */
+    .glass-container {
+        padding: 20px;
+        margin-top: 5vh;
+    }
+
+    .logo {
+        font-size: 25px;
+    }
+
+    li.nav-link {
+        font-size: 15px;
+    }
+    .main h2 {
+        font-size: 28px;
+    }
+    
+    .main p {
+        font-size: 15px;
+    }
+
+    button {
+        font-size: 13px;
+    }
 }
 
-.image-wrapper img{
-    max-width: 500px;
-}
-
-.pfp-wrapper {
-    display: flex;
-    position: relative;
-}
-
-.pfp-wrapper img{
-    max-width: 300px;
-}
-
-.attribute {
-    position: absolute;
-    bottom: -30px;
-    right: 0;
-    font-size: 12px;
-    color: #ffffff;
-}
 
 /*----------------------------------*/
 /*----------ABOUT PAGE, LUCAS----------*/
@@ -166,10 +171,13 @@ body.about{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
+    padding-bottom: 50px;
 }
 
 #group_photo {
-    float: right;
+    display: grid;
+    justify-content: center;
+    align-items: center;
 }
 
 #group_photo > img {
@@ -198,13 +206,10 @@ body.about{
 
 .contributions dt {
     padding: 15px;
-
     font-size: 30pt;
     font-weight: bold;
-
     background: rgba(0, 0, 0, 0.36);
     border-radius: 22px;
-
     min-width: 15%;
 }
 
@@ -216,11 +221,8 @@ body.about{
 .soup-image {
     width: 15vw;
     height: 15vw;
-
     border-radius: 15%;
-
     box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.26);
-
     margin: auto;
 }
 
@@ -232,25 +234,15 @@ body.about{
 .about_left_profile {
     background: rgba(0, 0, 0, 0.36);
     border-radius: 30px;
-
-
     margin-top: 15px;
     margin-bottom: 15px;
-
     margin-left: 40px;
-
     padding: 15px;
     width: 65%;
-
-
     clear: both;
-
     display: grid;
     gap: 20px;
-
     text-align: center;
-
-
     float: left;
     grid-template-columns: 15vw 1fr;
 }
@@ -263,43 +255,30 @@ body.about{
 .about_right_profile {
     background: rgba(0, 0, 0, 0.36);
     border-radius: 30px;
-
-
     margin-top: 15px;
     margin-bottom: 15px;
-
     margin-right: 40px;
-
     padding: 15px;
     width: 65%;
-
     clear: both;
-
     display: grid;
     gap: 20px;
-
-
     text-align: center;
-
     grid-template-columns: 1fr 15vw;
     float: right;
 }
 
 table {
     border-radius: 14px;
-
     background-color: rgba(0, 0, 0, 0.26);
     border-collapse: separate;
     border-spacing: 0px;
-
     width: 100%;
 }
 
 td, th {
     min-width: 40px;
-
     border: 1px solid white;
-
     padding: 10px;
 }
 
@@ -367,7 +346,7 @@ td {
 */
 
 /*----------------------------------*/
-/*----------APPLY PAGE, MAGGIE----------*/
+/*----------APPLY PAGE, MAGGIE XIN YI LAW----------*/
 body.apply{
     color: #ffffff;
     background-color: #e9ff99;
@@ -431,7 +410,7 @@ textarea:focus {
     outline: none;
 }
 
-/*
+/* Experimenting with button styles
 button {
     text-decoration: none;
     font-size: 15px;
@@ -471,55 +450,9 @@ button:hover::before, button:hover::after {
 }
 */
 
-button {
-    margin-top: 10px;
-    width: 100%;
-    height: 40px;
-    font-size: 15px;
-    color: #ffffff;
-    background-color: transparent;
-    border: 1px solid #ffffff;
-    border-radius: 10px;
-    cursor:pointer;
-    transition: all 0.3s ease;
-}
-
-button a:hover{
-    color: #000000;
-}
-
-button:hover {
-    background-color: #ffffff;
-    color: #000000;
-}
-
-@media screen and (max-width: 720px) {
-    .logo {
-        font-size: 25px;
-    }
-    li.nav-link {
-        font-size: 15px;
-    }
-    .main h2 {
-        font-size: 28px;
-    }
-    
-    .main p {
-        font-size: 15px;
-    }
-
-    button {
-        font-size: 13px;
-    }
-
-    .image-wrapper img{
-        max-width: 400px;
-    }
-}
-
 
 /*----------------------------------*/
-/*----------HOME PAGE, Jay Kshirsagar----------*/
+/*----------HOME PAGE, JAY KSHIRSAGAR----------*/
 body.home{
     color: #ffffff;
     background-color: #e9ff99;
@@ -536,17 +469,20 @@ body.home{
 
 .logo  {
     display: flex;
-    display: flex;
     align-items: center; /* vertical centering */
     padding: 20px;
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: -10px;
 }
+
 .logo img {
     width: 5%;
 }
 
 
 /*----------------------------------*/
-/*----------JOBS PAGE, Pujan K----------*/
+/*----------JOBS PAGE, PUJAN KUKADIYA----------*/
 body.jobs{
     color: #ffffff;
     background-color: #e9ff99;
@@ -593,6 +529,3 @@ aside h1 {
         transform: translateY(0);
     }
 }
-
-
-
