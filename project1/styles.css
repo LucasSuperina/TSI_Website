@@ -24,7 +24,7 @@ a {
     margin-left: 5px;
     margin-right: 5px;
     background: rgba(0, 0, 0, 0.26);
-    padding: 10px;
+    padding: 50px;
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(11.6px);
@@ -117,6 +117,33 @@ section
     margin-bottom: 10px auto;
 }
 
+.image-wrapper {
+    display: flex;
+    margin-top: 5vh;
+    position: relative;
+}
+
+.image-wrapper img{
+    max-width: 500px;
+}
+
+.pfp-wrapper {
+    display: flex;
+    position: relative;
+}
+
+.pfp-wrapper img{
+    max-width: 300px;
+}
+
+.attribute {
+    position: absolute;
+    bottom: -30px;
+    right: 0;
+    font-size: 12px;
+    color: #ffffff;
+}
+
 /*----------------------------------*/
 /*----------ABOUT PAGE, LUCAS----------*/
 body.about{
@@ -133,11 +160,6 @@ body.about{
         radial-gradient(at 44% 9%, hsl(120, 40%, 70%) 0px, transparent 50%),
         radial-gradient(at 10% 9%, hsl(76, 65%, 70%, 1) 0px, transparent 50%);
     min-height: 100vh;
-}
-
-#group_header {
-    min-width: 70vh;
-    text-align: center;
 }
 
 #skills_and_info {
@@ -263,10 +285,6 @@ body.about{
     float: right;
 }
 
-#table_heading {
-    font-size: 30px;
-}
-
 table {
     border-radius: 14px;
 
@@ -275,8 +293,6 @@ table {
     border-spacing: 0px;
 
     width: 100%;
-
-    text-align: center;
 }
 
 td, th {
@@ -322,9 +338,37 @@ tbody > tr:last-child > td:last-child, tbody > tr:last-child > th:last-child {
     border-bottom-right-radius: 14px;
 }
 
+/*
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+
+    empty-cells: show;
+}
+
+/*
+th {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px;
+    text-align: left;
+}
+
+td {
+    background-color: transparent;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 300;
+    padding: 10px;
+    text-align: left;
+}
+*/
+
 /*----------------------------------*/
 /*----------APPLY PAGE, MAGGIE----------*/
-body.apply{ /*Gradient background*/
+body.apply{
     color: #ffffff;
     background-color: #e9ff99;
     background-image:
@@ -387,7 +431,7 @@ textarea:focus {
     outline: none;
 }
 
-/* experimenting with button styles
+/*
 button {
     text-decoration: none;
     font-size: 15px;
@@ -427,7 +471,7 @@ button:hover::before, button:hover::after {
 }
 */
 
-button { /*Submit button*/
+button {
     margin-top: 10px;
     width: 100%;
     height: 40px;
@@ -449,7 +493,7 @@ button:hover {
     color: #000000;
 }
 
-@media screen and (max-width: 720px) { /* Responsive Design */
+@media screen and (max-width: 720px) {
     .logo {
         font-size: 25px;
     }
