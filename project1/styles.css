@@ -388,6 +388,39 @@ button:hover::before, button:hover::after {
 }
 */
 
+aside {
+    border: 2px solid #cccccc;
+    border-radius: 10px;
+    padding: 40px; 
+    margin-bottom: 15px;
+    margin-top: 0px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    background-color: transparent; 
+
+    opacity: 0;
+    transform: translateY(20px); 
+    animation: floatUp 0.5s ease-out forwards; 
+}
+
+aside h1, aside h2, aside h3, aside p, aside ul, aside li {
+    margin: 5px 0;
+}
+
+aside h1 {
+    padding: 0px;
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 button {
     margin-top: 10px;
     width: 100%;
