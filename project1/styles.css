@@ -79,15 +79,6 @@ li.nav-link {
     line-height: 23px;
 }
 
-section
-{
-    margin-top: 5vh;
-    display: flex;
-    justify-content: left;
-    flex-direction: column;
-    text-align: left;
-}
-
 button { /* Submit button */
     margin-top: 10px;
     width: 100%;
@@ -521,12 +512,6 @@ body.home{
 
 .logo img {
     width: 5%;
-}
-
-.viewjobs :hover {
-
-    color:#e9ff99
-
 }
 
 .hero {

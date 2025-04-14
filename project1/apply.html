@@ -37,7 +37,7 @@
                 <div class="main">
                     <h1>Application Form</h1>
                     <hr>
-                    <form action="http://mercury.swin.edu.au/it000000/formtest.php" method="post">
+                    <form action="http://mercury.swin.edu.au/it000000/formtest.php" method="post"> <!-- Form action to send data to the server -->
                         <br>
                         <label for="job-reference-number">Job Reference No. : </label>
                         <select name="job-reference-number" id="job-reference-number" required>
@@ -54,7 +54,7 @@
                             <input type="text" id="last-name" name="last-name" required pattern="[A-Za-z\\s]{1,20}"><br><br>
                             
                             <label for="dob">Date of Birth: </label>
-                            <input type="date" id="dob" name="dob" required max="2009-04-14"><br><br>
+                            <input type="date" id="dob" name="dob" required max="2009-04-14"><br><br> <!-- Max date is set to 14 April 2009 to ensure the user is at least 16 years old -->
                             
                             <fieldset>
                                 <legend>Gender</legend><br>
