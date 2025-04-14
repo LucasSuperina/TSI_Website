@@ -22,7 +22,7 @@
                     <img src="./Images/company_logo.png" alt="Terrible Software Limited Inc. logo">
                     <a href="index.html">Terrible Software Inc.</a>
                 
-                    <nav class="navbar">
+                    <nav class="navbar"> <!-- Menu Bar for all 4 pages-->
                         <ul class="nav-links">
                             <li class="nav-link"><a href="index.html">Home</a></li>
                             <li class="nav-link"><a href="about.html">About</a></li>
@@ -40,7 +40,8 @@
                     <form action="http://mercury.swin.edu.au/it000000/formtest.php" method="post">
                         <br>
                         <label for="job-reference-number">Job Reference No. : </label>
-                        <select name="job-reference-number" id="job-reference-number">
+                        <select name="job-reference-number" id="job-reference-number" required>
+                            <option value="" disabled selected>Select Job Reference No.</option>
                             <option value="12345">AI/ML Engineer - 12345</option>
                             <option value="67890">Software Engineer - 67890</option>
                         </select><br><br>
@@ -53,7 +54,7 @@
                             <input type="text" id="last-name" name="last-name" required pattern="[A-Za-z\\s]{1,20}"><br><br>
                             
                             <label for="dob">Date of Birth: </label>
-                            <input type="date" id="dob" name="dob" required><br><br>
+                            <input type="date" id="dob" name="dob" required max="2009-04-14"><br><br>
                             
                             <fieldset>
                                 <legend>Gender</legend><br>
