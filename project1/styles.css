@@ -568,7 +568,6 @@ body.home{
 
 .hero-buttons button {
     padding: 10px 20px;
-    margin: 0 10px;
     font-size: 1rem;
     border: none;
     border-radius: 5px;
@@ -586,6 +585,12 @@ body.home{
     border: 10px solid white;
 }
 
+.button_text {
+    display: inline-block;
+    padding: 0, 10px;
+    width: 100%;
+    height: 100%;
+}
 
 /*----------------------------------*/
 /*----------JOBS PAGE, PUJAN KUKADIYA----------*/
