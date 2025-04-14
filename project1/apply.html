@@ -73,6 +73,7 @@
 
                                 <label for="state">State: </label><br>
                                 <select name="state" id="state" required>
+                                    <option value="" disabled selected>Select your state</option>
                                     <option value="NSW">NSW</option>
                                     <option value="VIC">VIC</option>
                                     <option value="QLD">QLD</option>
@@ -98,16 +99,17 @@
                             
                             <fieldset>
                                 <legend>Required Technical</legend><br>
-                                <label for="skills">Skills: </label><br>
-                                <input type="checkbox" name="html" checked>
+                                <p>Skills: </p>
+                                <input type="checkbox" id="html" name="html" checked>
                                 <label for="html">HTML</label><br>
-                                <input type="checkbox" name="css">
+                                <input type="checkbox" id="css" name="css">
                                 <label for="css">CSS</label><br>
-                                <input type="checkbox" name="javascript">
+                                <input type="checkbox" id="javascript" name="javascript">
                                 <label for="javascript">JavaScript</label><br>
-                                <input type="checkbox" name="others">
-                                <label for="others">Other skills <br><br> Please specify: </label><br>
-                                <textarea name="others" id="others"></textarea><br><br>
+                                <input type="checkbox" id="other-skills" name="others">
+                                <label for="other-skills">Other skills</label><br><br>
+                                <label for="other-skills-text">Please specify: </label><br>
+                                <textarea name="others" id="other-skills-text"></textarea><br><br>
                             </fieldset><br>
                         </fieldset><br><br>
                         <button type="submit">Apply</button>
