@@ -530,10 +530,6 @@ body.home{
 
 }
 
-.nav-link :hover {
-    color: white
-}
-
 .hero {
     position: relative;
     text-align: center;
