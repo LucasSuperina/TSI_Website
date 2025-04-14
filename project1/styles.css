@@ -74,16 +74,6 @@ li.nav-link {
     line-height: 23px;
 }
 
-section
-{
-    margin-top: 5vh;
-    display: flex;
-    justify-content: left;
-    align-items: left;
-    flex-direction: column;
-    text-align: left;
-}
-
 button { /* Submit button */
     margin-top: 10px;
     width: 100%;
@@ -131,10 +121,10 @@ button:hover {
 
 .footer ul li {
     list-style: none;
-    margin-left: 30px auto;
-    margin-right: 30px auto;
-    margin-top: 10px auto;
-    margin-bottom: 10px auto;
+    margin-left: 20px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 @media screen and (max-width: 768px) { /* Responsive styles for smaller screens */
