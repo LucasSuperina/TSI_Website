@@ -615,6 +615,12 @@ aside h1 {
     padding: 0px;
 }
 
+/*---soup stuff for positions page---*/
+#job_listing_header {
+    font: normal normal bold 35px 'Quicksand';
+}
+/*-----------------------------------*/
+
 @keyframes floatUp {
     0% {
         opacity: 0;
