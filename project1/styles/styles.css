@@ -549,9 +549,12 @@ body.home{
 
 .hero-buttons {
     margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
 }
 
-.hero-buttons button {
+.hero-buttons a {
     padding: 10px 20px;
     font-size: 1rem;
     border: none;
