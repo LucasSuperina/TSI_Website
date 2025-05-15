@@ -8,10 +8,10 @@
     define("ACTIVE_LINK_CLASS", '"nav-link active"');
 
     $Name_Link_Pairs = [
-        ["Home", "index.html"],
-        ["About", "about.html"],
-        ["Jobs", "jobs.html"],
-        ["Apply", "apply.html"],
+        ["Home", "index.php"],
+        ["About", "about.php"],
+        ["Jobs", "jobs.php"],
+        ["Apply", "apply.php"],
     ];
     function createHeader($_current_page_name) { 
         global $Name_Link_Pairs;

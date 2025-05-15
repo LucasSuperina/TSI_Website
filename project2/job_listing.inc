@@ -73,7 +73,7 @@
             create_responsibilities_QSKA_list($_Required_QSKA, FALSE);
             echo "<h3>Preferable</h3>";
             create_responsibilities_QSKA_list($_Prefered_QSKA, FALSE);
-        echo "<a class='button' href='apply.html'>Apply Now</a>";
+        echo "<a class='button' href='apply.php'>Apply Now</a>";
         echo "</aside>";
         echo "<br><br>";
 

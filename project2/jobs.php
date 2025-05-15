@@ -22,7 +22,7 @@
 <body class="jobs">
     <div class="container">
         <div class="glass-container">
-            <?php createHeader("About"); ?>
+            <?php createHeader("Jobs"); ?>
 
             <div class="content">
                 <div class="main">
