@@ -1,0 +1,642 @@
+/* GLOBAL STYLE, MAGGIE XIN YI LAW*/
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+* {
+    font-family: 'Quicksand', sans-serif;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    min-width: 50vw;
+    max-width: 100vw;
+}
+
+.glass-container { /* Glassmorphism effect */
+    display: block;
+    min-width: min-content;
+    max-width: 80vw;
+    margin-top: 7vh;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background: rgba(0, 0, 0, 0.26);
+    padding: 50px;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(11.6px);
+    opacity: 0;
+    transform: translateY(20px); 
+    animation: floatUp 0.5s ease-out forwards; 
+}
+
+ul.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    float: right;
+}
+
+li.nav-link {
+    display: inline-block;
+    margin-left: 30px;
+    font-size: 17px;
+    font-weight: 300;
+}
+
+.nav-link.active a {
+    font-weight: bold;
+    color: white;
+}
+
+.content {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.main {
+    display: inline-block;
+    padding: 20px;
+}
+
+.main h1 {
+    font-size: 35px;
+}
+
+.main h2 {
+    font-size: 30px;
+}
+
+.main p {
+    font-size: 16px;
+    line-height: 23px;
+}
+
+button { /* Submit button */
+    margin-top: 10px;
+    width: 100%;
+    height: 40px;
+    font-size: 15px;
+    color: #ffffff;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    cursor:pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.glass-container-footer {
+    display: flex;
+    min-width: min-content;
+    width: 100%;
+    margin-top: 7vh;
+    margin-bottom: 10px;
+    background: rgba(0, 0, 0, 0.26);
+    padding: 50px;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(11.6px);
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+    width: 100%;
+}
+
+.footer ul {
+    display: flex;
+    gap: 15vw;
+}
+
+.footer ul li {
+    list-style: none;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) { /* Responsive styles for smaller screens */
+    .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+    }
+    
+    .glass-container {
+        padding: 20px;
+        margin-top: 5vh;
+    }
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main {
+        padding: 10px;
+        margin-top: 5vh;
+    }
+}
+
+
+/*----------------------------------*/
+/*----------ABOUT PAGE, LUCAS----------*/
+body.about{
+    color: #ffffff;
+    background-color: hsl(120, 40%, 70%);
+    background-image:
+        linear-gradient(to right, hsla(0, 0%, 100%, 0.2), rgba(0, 0, 0, 0) 18%), 
+        linear-gradient(to right, rgba(0, 0, 0, 0) 82%, hsla(0, 0%, 100%, 0.2) 100%),
+        radial-gradient(at 9% 89%, hsl(180, 90%, 70%) 0px, transparent 50%),
+        radial-gradient(at 72% 6%, hsl(120, 80%, 70%) 0px, transparent 50%),
+        radial-gradient(at 24% 19%, hsl(240, 50%, 86%) 0px, transparent 50%),
+        radial-gradient(at 65% 6%, hsl(300, 60%, 70%) 0px, transparent 50%),
+        radial-gradient(at 20% 98%, hsl(316, 75%, 70%) 0px, transparent 50%),
+        radial-gradient(at 44% 9%, hsl(120, 40%, 70%) 0px, transparent 50%),
+        radial-gradient(at 10% 9%, hsl(76, 65%, 70%, 1) 0px, transparent 50%);
+    min-height: 100vh;
+}
+
+#skills_and_info {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+    padding-bottom: 50px;
+    min-width: fit-content;
+}
+
+#group_photo {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    float: right;
+}
+
+#group_photo > img {
+    border: rgba(0, 0, 0, 0.52) solid 5px;
+    border-radius: 14px;
+}
+
+figcaption {
+    text-align: center;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+#contributions_heading {
+    text-align: center;
+    clear: both;
+}
+
+.content-soup {
+    width: 100%;
+}
+
+.main-soup {
+    margin-top: 10vh;
+    display: inline;
+    padding: 20px;
+}
+
+.main-soup li {
+    text-align: left;
+}
+
+.contributions dt {
+    padding: 15px;
+    font-size: 30pt;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.36);
+    border-radius: 22px;
+    min-width: 15%;
+}
+
+.contributions p {
+    text-align: center;
+    line-height: 0px;
+}
+
+.soup-image {
+    width: 15vw;
+    height: 15vw;
+    border-radius: 15%;
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.26);
+    margin: auto;
+}
+
+.left_profile_title {
+    clear: both;
+    float: left;
+}
+
+.about_left_profile {
+    background: rgba(0, 0, 0, 0.36);
+    border-radius: 30px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 40px;
+    padding: 15px;
+    width: 65%;
+    clear: both;
+    display: grid;
+    gap: 20px;
+    text-align: center;
+    float: left;
+    grid-template-columns: 15vw 1fr;
+}
+
+.right_profile_title {
+    clear: both;
+    float: right;
+}
+
+.about_right_profile {
+    background: rgba(0, 0, 0, 0.36);
+    border-radius: 30px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 40px;
+    padding: 15px;
+    width: 65%;
+    clear: both;
+    display: grid;
+    gap: 20px;
+    text-align: center;
+    grid-template-columns: 1fr 15vw;
+    float: right;
+}
+
+table {
+    border-radius: 14px;
+    background-color: rgba(0, 0, 0, 0.26);
+    border-collapse: separate;
+    border-spacing: 0px;
+    width: 100%;
+}
+
+td, th {
+    min-width: 40px;
+    border: 1px solid white;
+    padding: 10px;
+}
+
+/*Table Edges*/
+thead > tr:first-child > td, thead > tr:first-child > th {
+    border-top: 2px solid white;
+}
+
+tbody > tr:last-child > td, tbody > tr:last-child > th {
+    border-bottom: 2px solid white;
+}
+
+td:first-child,  th:first-child{
+    border-left: 2px solid white;
+}
+
+td:last-child, th:last-child {
+    border-right: 2px solid white;
+
+}
+
+/*Table corners*/
+thead > tr:first-child > td:first-child, thead > tr:first-child > th:first-child  {
+    border-top-left-radius: 14px;
+}
+
+thead > tr:first-child > td:last-child, thead > tr:first-child > th:last-child  {
+    border-top-right-radius: 14px;
+}
+
+tbody > tr:last-child > td:first-child, tbody > tr:last-child > th:first-child {
+    border-bottom-left-radius: 14px;
+}
+
+tbody > tr:last-child > td:last-child, tbody > tr:last-child > th:last-child {
+    border-bottom-right-radius: 14px;
+}
+
+/*
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+
+    empty-cells: show;
+}
+
+/*
+th {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px;
+    text-align: left;
+}
+
+td {
+    background-color: transparent;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 300;
+    padding: 10px;
+    text-align: left;
+}
+*/
+
+/*----------------------------------*/
+/*----------APPLY PAGE, MAGGIE XIN YI LAW----------*/
+body.apply{
+    color: #ffffff;
+    background-color: #e9ff99;
+    background-image:
+        radial-gradient(at 9% 89%, hsl(215, 41%, 62%) 0px, transparent 50%),
+        radial-gradient(at 72% 6%, hsl(331, 43%, 58%) 0px, transparent 50%),
+        radial-gradient(at 24% 19%, hsl(14, 62%, 63%) 0px, transparent 50%),
+        radial-gradient(at 65% 6%, hsl(6, 41%, 57%) 0px, transparent 50%),
+        radial-gradient(at 20% 98%, hsl(316, 41%, 56%) 0px, transparent 50%),
+        radial-gradient(at 44% 9%, hsl(40, 46%, 62%) 0px, transparent 50%),
+        radial-gradient(at 10% 9%, hsl(76, 28%, 48%) 0px, transparent 50%);
+    min-height: 100vh;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+label {
+    align-self: flex-start;
+}
+
+input {
+    padding: 5px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1px solid #ffffff;
+    background-color: transparent;
+    color: #ffffff;
+}
+
+input:focus {
+    outline: none;
+}
+
+select {
+    width: 100%;
+    padding: 16px 20px;
+    border: 1px solid white;
+    border-radius: 10px;
+
+    color: white;
+    background-color: transparent;
+}
+
+select > option {
+    background-color: black;
+}
+
+select:focus {
+    outline: none;
+}
+
+textarea {
+    padding: 5px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1px solid #ffffff;
+    background-color: transparent;
+    color: #ffffff;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+/* Experimenting with button styles
+button {
+    text-decoration: none;
+    font-size: 15px;
+    color: #ffffff;
+    background-color: transparent;
+    padding: 20px;
+    border: 1px solid #ffffff;
+    position: relative;
+    width: 90%;
+    cursor: pointer;
+}
+
+button::before, button::after {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: inherit;
+    transition: all .5s;
+}
+
+button::before {
+    top: -15px;
+    left: -15px;
+    border-width: 1px 0 0 1px;
+}
+
+button::after {
+    bottom: -15px;
+    right: -15px;
+    border-width: 0 1px 1px 0;
+}
+
+button:hover::before, button:hover::after {
+    width: calc(100% + 29px);
+    height: calc(100% + 29px);
+}
+*/
+
+
+/*----------------------------------*/
+/*----------HOME PAGE, JAY KSHIRSAGAR----------*/
+body.home{
+    color: #ffffff;
+    background-color: #e9ff99;
+    background-image:
+        radial-gradient(at 9% 89%, hsl(216, 45%, 43%) 0px, transparent 50%),
+        radial-gradient(at 72% 6%, hsl(189, 52%, 55%) 0px, transparent 50%),
+        radial-gradient(at 24% 19%, hsl(28, 63%, 76%) 0px, transparent 50%),
+        radial-gradient(at 65% 6%, hsl(287, 60%, 66%) 0px, transparent 50%),
+        radial-gradient(at 20% 98%, hsl(263, 47%, 63%) 0px, transparent 50%),
+        radial-gradient(at 44% 9%, hsl(200, 26%, 56%) 0px, transparent 50%),
+        radial-gradient(at 10% 9%, hsl(76, 60%, 60%) 0px, transparent 50%);
+    min-height: 100vh;
+}
+
+.logo  {
+    display: flex;
+    align-items: center; /* vertical centering */
+    padding: 20px;
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: -10px;
+    background-color: transparent
+}
+
+.logo img {
+    width: 5%;
+}
+
+.hero {
+    position: relative;
+    text-align: center;
+    color: white;
+    height: 100vh;
+
+}
+
+.hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.4);
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    margin: 0;
+}
+
+.hero-text p {
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+.hero-buttons {
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-buttons a {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.apply-btn {
+    background-color: #0071e3;
+    color: white;
+}
+
+.jobs-btn {
+    background-color: transparent;
+    color: white;
+    border: 10px solid white;
+}
+
+.button_text {
+    display: inline-block;
+    padding: 0 10px;
+    width: 100%;
+    height: 100%;
+}
+
+/*----------------------------------*/
+/*----------JOBS PAGE, PUJAN KUKADIYA----------*/
+body.jobs{
+    color: #ffffff;
+    background-color: #e9ff99;
+    background-image:
+        radial-gradient(at 9% 89%, hsl(85, 54%, 59%) 0px, transparent 50%),
+        radial-gradient(at 72% 6%, hsl(151, 74%, 64%) 0px, transparent 50%),
+        radial-gradient(at 24% 19%, hsl(289, 69%, 65%) 0px, transparent 50%),
+        radial-gradient(at 65% 6%, hsl(46, 75%, 67%) 0px, transparent 50%),
+        radial-gradient(at 20% 98%, hsl(316, 67%, 62%) 0px, transparent 50%),
+        radial-gradient(at 44% 9%, hsl(145, 78%, 62%) 0px, transparent 50%),
+        radial-gradient(at 10% 9%, hsl(76, 55%, 59%) 0px, transparent 50%);
+    min-height: 100vh;
+}
+
+aside {
+    border: 2px solid #cccccc;
+    border-radius: 10px;
+    padding: 40px; 
+    margin-bottom: 15px;
+    margin-top: 0px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    background-color: transparent; 
+
+    opacity: 0;
+    transform: translateY(20px); 
+    animation: floatUp 0.5s ease-out forwards; 
+}
+
+aside h1, aside h2, aside h3, aside p, aside ul, aside li {
+    margin: 5px 0;
+}
+
+aside h1 {
+    padding: 0px;
+}
+
+/*---soup stuff for positions page---*/
+#job_listing_header {
+    font: normal normal bold 35px 'Quicksand';
+}
+/*-----------------------------------*/
+
+@keyframes floatUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
