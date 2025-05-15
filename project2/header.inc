@@ -15,8 +15,6 @@
     ];
     function createHeader($_current_page_name) { 
         global $Name_Link_Pairs;
-
-        echo "<p>". $_current_page_name ."</p>";
         ?>
         <header>
                 <div class="logo">
