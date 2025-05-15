@@ -1,9 +1,11 @@
+<!--LUCAS SUPERINA 105914669-->
+
 <?php
     define("NAME", 0);
     define("LINK", 1);
 
-    define("INACTIVE_LINK_CLASS", "nav-link");
-    define("ACTIVE_LINK_CLASS", "nav-link active");
+    define("INACTIVE_LINK_CLASS", '"nav-link"');
+    define("ACTIVE_LINK_CLASS", '"nav-link active"');
 
     $Name_Link_Pairs = [
         ["Home", "index.html"],
@@ -29,14 +31,13 @@
                                 $Current_Name = $Current_Pair[NAME];
                                 $Current_Link = $Current_Pair[LINK];
 
-                                echo "<p>". ($Current_Name == $_current_page_name) ."</p>";
                                 $Current_Link_Class = INACTIVE_LINK_CLASS;
                                 if ($Current_Name == $_current_page_name) {
                                     $Current_Link_Class = ACTIVE_LINK_CLASS;
                                 }
                                 
-                                echo "<li class=". $Current_Link_Class ."><a href=". $Current_Link .">". $Current_Name ."</a></li>";
-                                }   
+                                echo "<li class=$Current_Link_Class><a href=$Current_Link>$Current_Name</a></li>";
+                            }   
                             ?>
                         </ul>
                     </nav>
