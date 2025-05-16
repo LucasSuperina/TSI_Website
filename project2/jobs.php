@@ -14,6 +14,8 @@
 </head>
 
 <?php
+    require_once("settings.php");   
+
     include "job_listing.inc";
 
     include "header.inc";
@@ -28,8 +30,7 @@
                 <div class="main">
                     <h1 id="job_listing_header">Job Listings</h1>
                     <?php
-                        job_listing();
-                        job_listing();
+                        list_all_jobs($conn);
                     ?>    
                 </div>
             </div>

@@ -28,7 +28,7 @@
                 <div class="main">
                     <h1>Application Form</h1>
                     <hr>
-                    <form action="http://mercury.swin.edu.au/it000000/formtest.php" method="post">
+                    <form action="./process_eoi.php" method="post">
                         <br>
                         <label for="job-reference-number">Job Reference No. : </label>
                         <select name="job-reference-number" id="job-reference-number">
