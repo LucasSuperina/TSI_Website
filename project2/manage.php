@@ -83,3 +83,90 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_status'])) {
 ?>
 
 
+<?php include_once('header.inc'); createHeader('Manage'); ?>
+
+<h2>Welcome, <?php echo $_SESSION['username']; ?></h2>
+
+<!-- Form to search EOIs by job reference, name, or sort -->
+<form method="GET" action="manage.php">
+    <fieldset>
+        <legend>Search EOIs</legend>
+        <input type="text" name="job_ref" placeholder="Job Ref Number">
+        <input type="text" name="first_name" placeholder="First Name">
+        <input type="text" name="last_name" placeholder="Last Name">
+        <select name="sort_by">
+            <option value="">Sort by...</option>
+            <option value="EOInumber">EOI Number</option>
+            <option value="LastName">Last Name</option>
+            <option value="Status">Status</option>
+        </select>
+        <input type="submit" value="Search">
+    </fieldset>
+</form>
+
+<!-- Form to delete EOIs by job reference -->
+<form method="POST" action="manage.php">
+    <fieldset>
+        <legend>Delete EOIs by Job Ref</legend>
+        <input type="text" name="delete_job_ref" placeholder="Enter Job Ref" required>
+        <input type="submit" name="delete" value="Delete">
+    </fieldset>
+</form>
+
+
+<?php
+// Display search results if filters are applied
+if ($_SERVER["REQUEST_METHOD"] == "GET" && (isset($_GET['job_ref']) || isset($_GET['first_name']) || isset($_GET['last_name']))) {
+    $filters = [];
+    if (!empty($_GET['job_ref'])) $filters[] = "JobReferenceNumber = '" . mysqli_real_escape_string($conn, $_GET['job_ref']) . "'";
+    if (!empty($_GET['first_name'])) $filters[] = "FirstName = '" . mysqli_real_escape_string($conn, $_GET['first_name']) . "'";
+    if (!empty($_GET['last_name'])) $filters[] = "LastName = '" . mysqli_real_escape_string($conn, $_GET['last_name']) . "'";
+    $where_clause = count($filters) > 0 ? "WHERE " . implode(" AND ", $filters) : "";
+    $sort_clause = !empty($_GET['sort_by']) ? "ORDER BY " . $_GET['sort_by'] : "";
+
+    $query = "SELECT * FROM eoi $where_clause $sort_clause"; // Selects all columns from the eoi table where the filters match, & optional sort order. The WHERE clause is built dynamically based on the filters provided by the user.
+    // WHERE JobReferenceNumber = 'ABC123' AND FirstName = 'John'   // ORDER BY LastName
+    $result = mysqli_query($conn, $query);
+
+    // Display the results in a table
+    if (mysqli_num_rows($result) > 0) {
+        echo "<h2>Search Results</h2>";
+        echo "<p>Found " . mysqli_num_rows($result) . " EOIs matching the criteria.</p>";
+        echo "<table border='1'>
+                <tr>
+                    <th>EOI Number</th>
+                    <th>Job Ref</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Status</th>
+                    <th>Change Status</th>
+                </tr>";
+        while ($row = mysqli_fetch_assoc($result)) { //loop through all rows to display them in a table
+            echo "<tr>";
+            echo "<td>{$row['EOInumber']}</td>";
+            echo "<td>{$row['JobReferenceNumber']}</td>";
+            echo "<td>{$row['FirstName']}</td>";
+            echo "<td>{$row['LastName']}</td>";
+            echo "<td>{$row['Status']}</td>";
+            // Inline form to change status for a specific EOI
+            echo "<td>
+                    <form method='POST' action='manage.php'>
+                        <input type='hidden' name='eoi_number' value='{$row['EOInumber']}'>
+                        <select name='new_status'>
+                            <option value='New'>New</option>
+                            <option value='Current'>Current</option>
+                            <option value='Final'>Final</option>
+                        </select>
+                        <input type='submit' name='update_status' value='Update'>
+                    </form>
+                </td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "<p>No EOIs found matching the criteria.</p>";
+    }
+}
+?>
+
+<?php include_once('footer.inc'); ?>
