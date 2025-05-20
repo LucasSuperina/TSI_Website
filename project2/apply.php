@@ -26,7 +26,7 @@
                 <div class="main">
                     <h1>Application Form</h1>
                     <hr>
-                    <form action="./process_eoi.php" method="post">
+                    <form action="./process_eoi.php" method="post" novalidate> <!-- Disabled client-side validation -->
                         <br>
                         <label for="job-reference-number">Job Reference No. : </label>
                         <select name="job-reference-number" id="job-reference-number">
