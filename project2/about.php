@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="author" content="Lucas Superina 105914669">
     <meta name="description" content="A page about the team who created this website, specifying each of their roles">
     <meta name="keywords" content="Group, Team Members, About, Interests, Terrible Software Inc.">
-
     <link rel="stylesheet" href="./styles/styles.css">
     <title>Terrible Software Inc - About Us</title>
 </head>
+
 <?php
     include "about_page_profile.inc";
 

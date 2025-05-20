@@ -5,10 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="author" content="Jay Kshirsagar 105912265">
     <meta name="description" content="A home page for Terrible Software Inc., containing information about the company">
     <meta name="keywords" content="About, About Page, Innovation, Impact, Terrible Software Inc.">
-
     <link rel="stylesheet" href="./styles/styles.css">
     <title>Terrible Software Inc - Home</title>
 </head>

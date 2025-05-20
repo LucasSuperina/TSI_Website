@@ -19,7 +19,7 @@
         <header>
                 <div class="logo">
                     <img src="./styles/images/company_logo.png" alt="Terrible Software Limited Inc. logo">
-                    <a href="index.html">Terrible Software Inc.</a>
+                    <a href="index.php">Terrible Software Inc.</a>
                 
                     <nav class="navbar">
                         <ul class="nav-links">
