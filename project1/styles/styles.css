@@ -67,14 +67,17 @@ li.nav-link {
 }
 
 .main h1 {
+    font: bold 35px 'Quicksand', sans-serif;
     font-size: 35px;
 }
 
 .main h2 {
+    font: bold 35px 'Quicksand', sans-serif;
     font-size: 30px;
 }
 
 .main p {
+    font: bold 35px 'Quicksand', sans-serif;
     font-size: 16px;
     line-height: 23px;
 }
@@ -419,13 +422,20 @@ input:focus {
 }
 
 select {
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1px solid #ffffff;
+    background-color: transparent;
+    color: #ffffff;
+    padding: 5px;
+    /*
     width: 100%;
     padding: 16px 20px;
     border: 1px solid white;
     border-radius: 10px;
-
     color: white;
     background-color: transparent;
+    */
 }
 
 select > option {
