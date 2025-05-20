@@ -6,7 +6,7 @@
 require_once("settings.php");
 
 // Establish connection to the database
-$conn = @mysqli_connect($host, $user, $pswd, $dbnm) or die("DB connection failed");
+$conn = mysqli_connect($host, $username, $password, $database) or die("DB connection failed");
 
 // Initialize variables
 $username = $password = $confirm_password = "";

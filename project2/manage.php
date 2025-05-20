@@ -11,7 +11,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 // Connect to MySQL database using credentials from settings.php
-$conn = @mysqli_connect($host, $user, $pswd, $dbnm) or die("Database connection failed");
+$conn = mysqli_connect($host, $username, $password, $database) or die("Database connection failed");
 // Initialize attempt tracking if not already set
 if (!isset($SESSION['attempts'])) {
     $_SESSION['attempts'] = 0;
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_status'])) {
     $eoi_number = mysqli_real_escape_string($conn, $_POST['eoi_number']);
     $new_status = mysqli_real_escape_string($conn, $_POST['new_status']);
-    $query = "UPDATE eoi SET Status = '$new_status' WHERE EOI_Number = '$eoi_number'"; //Updates the Status field (e.g., from New → Final) of a specific EOI application.
+    $query = "UPDATE eoi SET Status = '$new_status' WHERE EOInumber = '$eoi_number'"; //Updates the Status field (e.g., from New → Final) of a specific EOI application.
     mysqli_query($conn, $query);
     echo "<p>Updated EOI Number: $eoi_number to Status: $new_status</p>";
 }

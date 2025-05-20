@@ -26,12 +26,12 @@
                 <div class="main">
                     <h1>Application Form</h1>
                     <hr>
-                    <form action="./process_eoi.php" method="post" novalidate> <!-- Disabled client-side validation -->
+                    <form action="process_eoi.php" method="post" novalidate> <!-- Disabled client-side validation -->
                         <br>
                         <label for="job-reference-number">Job Reference No. : </label>
                         <select name="job-reference-number" id="job-reference-number">
-                            <option value="12345">AI/ML Engineer - 12345</option>
-                            <option value="67890">Software Engineer - 67890</option>
+                            <option value="ML123">AI/ML Engineer - ML123</option>
+                            <option value="SD123">Software Engineer - SD123</option>
                         </select><br><br>
 
                         <fieldset>
@@ -62,7 +62,7 @@
 
                                 <label for="state">State: </label><br>
                                 <select name="state" id="state" required>
-                                    <option value="" disabled selected>Select your state</option>
+                                    <option value="" selected hidden>Select your state</option>
                                     <option value="NSW">NSW</option>
                                     <option value="VIC">VIC</option>
                                     <option value="QLD">QLD</option>
@@ -89,19 +89,19 @@
                             <fieldset>
                                 <legend>Required Technical</legend><br>
                                 <p>Skills: </p>
-                                <input type="checkbox" id="html" name="html" checked>
+                                <input type="checkbox" id="html" name="skills[]" value="HTML" checked>
                                 <label for="html">HTML</label><br>
-                                <input type="checkbox" id="css" name="css">
+                                <input type="checkbox" id="css" name="skills[]" value="CSS">
                                 <label for="css">CSS</label><br>
-                                <input type="checkbox" id="javascript" name="javascript">
+                                <input type="checkbox" id="javascript" name="skills[]" value="JavaScript">
                                 <label for="javascript">JavaScript</label><br>
-                                <input type="checkbox" id="other-skills" name="others">
+                                <input type="checkbox" id="other-skills" name="skills[]" value="Other">
                                 <label for="other-skills">Other skills</label><br><br>
                                 <label for="other-skills-text">Please specify: </label><br>
                                 <textarea name="others" id="other-skills-text"></textarea><br><br>
                             </fieldset><br>
                         </fieldset><br><br>
-                        <button type="submit">Apply</button>
+                        <button type="submit" name="submit">Apply</button>
                     </form>
                 </div>
             </div>
