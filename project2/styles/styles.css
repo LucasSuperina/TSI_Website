@@ -624,11 +624,37 @@ aside h1 {
     padding: 0px;
 }
 
+/*--- soups fake button stuff for this page ------*/
+
 /*---soup stuff for positions page---*/
 #job_listing_header {
     font: normal normal bold 35px 'Quicksand';
 }
 /*-----------------------------------*/
+
+/*--- soups fake button stuff for this page ------*/
+
+.fake_button { /* apply button */
+    text-align: center;
+    display: inline-block;
+    margin: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    font-size: 15px;
+    color: #ffffff;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    cursor:pointer;
+    transition: all 0.3s ease;
+}
+
+.fake_button:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
 
 @keyframes floatUp {
     0% {
