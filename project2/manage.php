@@ -83,35 +83,65 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_status'])) {
 ?>
 
 
-<?php include_once('header.inc'); createHeader('Manage'); ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Maggie Xin Yi Law 103488683">
+    <meta name="description" content="Manage EOIs for Terrible Software Inc.">
+    <meta name="keywords" content="EOI, Job Application, Management, Terrible Software Inc., HTML, CSS, Javascript">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>Terrible Software Inc - Manage EOIs</title>
+</head>
 
-<h2>Welcome, <?php echo $_SESSION['username']; ?></h2>
+<?php
+    include"header.inc";
+?>
 
-<!-- Form to search EOIs by job reference, name, or sort -->
-<form method="GET" action="manage.php">
-    <fieldset>
-        <legend>Search EOIs</legend>
-        <input type="text" name="job_ref" placeholder="Job Ref Number">
-        <input type="text" name="first_name" placeholder="First Name">
-        <input type="text" name="last_name" placeholder="Last Name">
-        <select name="sort_by">
-            <option value="">Sort by...</option>
-            <option value="EOInumber">EOI Number</option>
-            <option value="LastName">Last Name</option>
-            <option value="Status">Status</option>
-        </select>
-        <input type="submit" value="Search">
-    </fieldset>
-</form>
+<body class="manage">
+    <div class="container">
+        <div class="glass-container">
+            <?php
+                createHeader("Manage");
+            ?>
 
-<!-- Form to delete EOIs by job reference -->
-<form method="POST" action="manage.php">
-    <fieldset>
-        <legend>Delete EOIs by Job Ref</legend>
-        <input type="text" name="delete_job_ref" placeholder="Enter Job Ref" required>
-        <input type="submit" name="delete" value="Delete">
-    </fieldset>
-</form>
+            <button><a href="logout.php">Logout</a></button>
+            <h2>Welcome, <?php echo $_SESSION['username']; ?>!</h2>
+            <h1>Manage EOIs</h1>
+            <hr>
+            <div class="content">
+                <div class="main">
+                    <p>Use the forms below to manage EOIs.</p><br>
+                    <!-- Form to search EOIs by job reference, name, or sort -->
+                    <form method="GET" action="manage.php">
+                        <fieldset>
+                            <legend>Search EOIs</legend><br>
+                            <select name="sort_by">
+                                <option value="">Sort by...</option>
+                                <option value="EOInumber">EOI Number</option>
+                                <option value="LastName">Last Name</option>
+                                <option value="Status">Status</option>
+                            </select>
+                            <br><br>
+                            <input type="text" name="job_ref" placeholder="Job Ref Number">
+                            <input type="text" name="first_name" placeholder="First Name">
+                            <input type="text" name="last_name" placeholder="Last Name">
+                            
+                    <input type="submit" value="Search">
+                        </fieldset>
+                    </form>
+                    <br><br>
+                    <!-- Form to delete EOIs by job reference -->
+                    <form method="POST" action="manage.php">
+                        <fieldset>
+                            <legend>Delete EOIs by Job Ref</legend>
+                            <input type="text" name="delete_job_ref" placeholder="Enter Job Ref" required>
+                            <input type="submit" name="delete" value="Delete">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
 
 
 <?php
@@ -169,4 +199,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && (isset($_GET['job_ref']) || isset($_G
 }
 ?>
 
-<?php include_once('footer.inc'); ?>
+        </div>
+    </div>
+    <?php
+    include"footer.inc";
+    ?>
+</body>
+</html>
