@@ -38,17 +38,13 @@
             create_responsibilities_QSKA_list($_Essential_QSKA, FALSE);
             echo "<h3>Preferable</h3>";
             create_responsibilities_QSKA_list($_Prefered_QSKA, FALSE);
-        echo "<a class='button' href='apply.php'>Apply Now</a>";
+        echo "<a class='fake_button' href='apply.php'>Apply Now</a>";
         echo "</aside>";
         echo "<br><br>";
 
     }
 
     function get_point_list_from_type($reference_number, $_point_type, $_conn) {
-        //these will be passed in as query results that are then looped over using mysqli_fetch_assoc
-        //however, so i dont get a desire to wander into the woods and live the rest of my life as a hermit,
-        //the test data will just be an array.
-
         $sql = "SELECT * FROM job_listing_info_points WHERE `Reference Number`LIKE '$reference_number' AND `Point_Type` LIKE '$_point_type'";
         $result = mysqli_query($_conn, $sql);
 
@@ -59,33 +55,7 @@
 
         return $return_array;
 
-        if ($_point_type == "Key Responsibilities") {
-            return [
-                "Design and develop machine learning models for classification, regression, clustering, and recommendation tasks.",
-                "Implement and maintain ML pipelines for model training, validation, and deployment.",
-                "Collaborate with data scientists, software engineers, and product teams to integrate ML solutions into production systems.",
-                "Conduct model performance evaluation and hyperparameter tuning.</li>",
-                "Stay updated with the latest research and trends in machine learning and AI.",
-                "Document processes and contribute to best practices for ML development."
-            ];
-        } elseif ($_point_type == "Essential QSKA") {
-            return [
-                "Bachelor’s degree in Computer Science, Engineering, Mathematics, or related field.",
-                "Minimum of 3 years of experience in developing machine learning models.",
-                "Strong proficiency in Python and ML libraries such as TensorFlow, PyTorch, Scikit-learn, and Pandas.",
-                "Experience with cloud platforms (e.g., AWS, GCP, or Azure) and ML services.",
-                "Solid understanding of data preprocessing, feature engineering, and model evaluation techniques.",
-            " Experience deploying ML models into production environments using Docker, Kubernetes, or similar tools.",
-            ];
-        } elseif ($_point_type == "Preferred QSKA") {
-            return [
-                "Master’s degree or Ph.D. in a related field.",
-                "Experience with MLOps tools such as MLflow, Kubeflow, or SageMaker.",
-                "Knowledge of NLP, deep learning, or reinforcement learning.",
-                "Familiarity with version control (Git) and CI/CD pipelines.",
-                "Strong communication and collaboration skills in cross-functional teams."
-            ];
-        }
+        
     }
 
     function create_responsibilities_QSKA_list($_points, $_is_ul) {
