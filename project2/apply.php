@@ -20,7 +20,9 @@
 <body class="apply">
     <div class="container">
         <div class="glass-container">
-            <?php createHeader("Apply"); ?>
+            <?php
+                createHeader("Apply");
+            ?>
 
             <div class="content">
                 <div class="main">

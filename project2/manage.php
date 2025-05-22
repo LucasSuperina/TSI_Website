@@ -12,6 +12,34 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 // Connect to MySQL database using credentials from settings.php
 $conn = mysqli_connect($host, $username, $password, $database) or die("Database connection failed");
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Maggie Xin Yi Law 103488683">
+    <meta name="description" content="Manage EOIs for Terrible Software Inc.">
+    <meta name="keywords" content="EOI, Job Application, Management, Terrible Software Inc., HTML, CSS, Javascript">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>Terrible Software Inc - Manage EOIs</title>
+</head>
+
+<?php
+    include"header.inc";
+?>
+
+<body class="manage">
+    <div class="container">
+        <div class="glass-container">
+            <?php
+                createHeader("Manage");
+            ?>
+
+
+<?php
 // Initialize attempt tracking if not already set
 if (!isset($SESSION['attempts'])) {
     $_SESSION['attempts'] = 0;
@@ -50,8 +78,10 @@ if (!isset($_SESSION['hr_logged_in'])) {
     // Use htmlspecialchars to prevent XSS attacks
     if ($login_error) echo "<p style='color:red;'>$login_error</p>";
     echo    '<form method="POST" action="manage.php">
-                <label>Username:</label><input type="text" name="username" required><br>
-                <label>Password:</label><input type="password" name="password" required><br>
+                <label>Username:</label>
+                <input type="text" name="username" required><br>
+                <label>Password:</label>
+                <input type="password" name="password" required><br>
                 <input type="submit" name="login" value="Login">
             </form>';
     exit();
@@ -63,11 +93,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
     $query = "DELETE FROM eoi WHERE JobReferenceNumber = '$delete_job_ref'"; // Removes all rows in the eoi table where the job reference matches. Used when the HR manager wants to bulk delete submissions for a specific job.
     mysqli_query($conn, $query);
     // Check if the query was successful
-    // Check if any rows were affected
+    // & also if any rows were affected
     if (mysqli_affected_rows($conn) > 0) {
         echo "<p>Deleted EOIs with Job Reference: $delete_job_ref</p>";
     } else {
-        // If no rows were affected, it means no EOIs were found with that Job Reference
+        // If no rows affected, it means no EOIs were found with that Job Reference
         echo "<p>No EOIs found with Job Reference: $delete_job_ref</p>";
     }
 }
@@ -83,28 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_status'])) {
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Maggie Xin Yi Law 103488683">
-    <meta name="description" content="Manage EOIs for Terrible Software Inc.">
-    <meta name="keywords" content="EOI, Job Application, Management, Terrible Software Inc., HTML, CSS, Javascript">
-    <link rel="stylesheet" href="./styles/styles.css">
-    <title>Terrible Software Inc - Manage EOIs</title>
-</head>
 
-<?php
-    include"header.inc";
-?>
-
-<body class="manage">
-    <div class="container">
-        <div class="glass-container">
-            <?php
-                createHeader("Manage");
-            ?>
 
             <button><a href="logout.php">Logout</a></button>
             <h2>Welcome, <?php echo $_SESSION['username']; ?>!</h2>
@@ -178,7 +187,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && (isset($_GET['job_ref']) || isset($_G
             echo "<td>{$row['FirstName']}</td>";
             echo "<td>{$row['LastName']}</td>";
             echo "<td>{$row['Status']}</td>";
-            // Inline form to change status for a specific EOI
+            // Inline form to CHANGE STATUS for a specific EOI
             echo "<td>
                     <form method='POST' action='manage.php'>
                         <input type='hidden' name='eoi_number' value='{$row['EOInumber']}'>
@@ -198,7 +207,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && (isset($_GET['job_ref']) || isset($_G
     }
 }
 ?>
-
         </div>
     </div>
     <?php

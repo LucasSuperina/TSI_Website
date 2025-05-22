@@ -81,25 +81,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<?php include_once('header.inc'); createHeader('Register'); ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Maggie Xin Yi Law 103488683">
+    <meta name="description" content="HR Manager Registration for Terrible Software Inc.">
+    <meta name="keywords" content="HR, Registration, Terrible Software Inc., HTML, CSS, Javascript">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>Terrible Software Inc - Manage EOIs</title>
+</head>
 
-<h2>HR Manager Registration</h2>
-<!-- Registration Form -->
-<form action="register_hr.php" method="post">
-    <label>Username</label><br>
-    <input type="text" name="username" value="<?php echo htmlspecialchars($username); ?>">
-    <span style="color:red;"><?php echo $username_err; ?></span><br><br>
+<?php
+    include_once('header.inc');
+?>
 
-    <label>Password</label><br>
-    <input type="password" name="password">
-    <span style="color:red;"><?php echo $password_err; ?></span><br><br>
+<body class="register">
+    <div class="container">
+        <div class="glass-container">
+            <?php
+                createHeader("HR Manager Registration");
+            ?>
 
-    <label>Confirm Password</label><br>
-    <input type="password" name="confirm_password">
-    <span style="color:red;"><?php echo $confirm_password_err; ?></span><br><br>
+            <h2>HR Manager Registration</h2>
+            <!-- Registration Form -->
+            <form action="register_hr.php" method="post">
+                <label>Username</label>
+                <input type="text" name="username" value="<?php echo htmlspecialchars($username); ?>">
+                <span style="color:red;"><?php echo $username_err; ?></span><br><br>
 
-    <input type="submit" value="Register">
-</form>
+                <label>Password</label>
+                <input type="password" name="password">
+                <span style="color:red;"><?php echo $password_err; ?></span><br><br>
+
+                <label>Confirm Password</label>
+                <input type="password" name="confirm_password">
+                <span style="color:red;"><?php echo $confirm_password_err; ?></span><br><br>
+
+                <input type="submit" value="Register">
+            </form>
+        </div>
+    </div>
+</body>
+
 
 <!-- Display success message if registration is successful -->
 <?php
