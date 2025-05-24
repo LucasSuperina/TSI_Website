@@ -1,57 +1,80 @@
 <!-- JAY KSHIRSAGAR 105912265 -->
 <!-- Part of Enhancements -->
 
-
-
 <?php
 session_start();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// Lockout settings
+$max_attempts = 3;
+$lockout_time = 300; // 5 minutes in seconds
+
+// Initialize session tracking
+if (!isset($_SESSION['attempts'])) {
+    $_SESSION['attempts'] = 0;
+    $_SESSION['last_attempt_time'] = 0;
+}
+
+// Check lockout status
+if ($_SESSION['attempts'] >= $max_attempts) {
+    $time_since_last = time() - $_SESSION['last_attempt_time'];
+    if ($time_since_last < $lockout_time) {
+        $remaining = $lockout_time - $time_since_last;
+        $error = "Too many failed login attempts. Please try again in $remaining seconds.";
+    } else {
+        // Reset after lockout period
+        $_SESSION['attempts'] = 0;
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && $_SESSION['attempts'] < $max_attempts) {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    
-    // Database connection parameters
+
+    // Database connection
     $servername = "localhost";
-    $db_username = "root"; // Change this to your database username
-    $db_password = "";     // Change this to your database password
-    $dbname = "terrible_db"; // Your database name
-    
-    // Connect to MySQL database
+    $db_username = "root";
+    $db_password = "";
+    $dbname = "terrible_db";
+
     $conn = new mysqli($servername, $db_username, $db_password, $dbname);
-    
-    // Check connection
+
     if ($conn->connect_error) {
         $error = "Connection failed: " . $conn->connect_error;
     } else {
-        // Prepare statement to prevent SQL injection
         $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
-        
+
         if ($result->num_rows > 0) {
-            // User exists, verify password
             $user = $result->fetch_assoc();
-            // Check if password is hashed or plain text (for your existing data)
+
+            // Support plain or hashed password
             if (password_verify($password, $user['password']) || $password === $user['password']) {
-                // Password is correct
                 $_SESSION['loggedin'] = true;
                 $_SESSION['username'] = $username;
+                $_SESSION['attempts'] = 0; // reset attempts
                 $stmt->close();
                 $conn->close();
                 header("Location: index.php");
                 exit;
             } else {
-                $error = "Invalid password";
+                $_SESSION['attempts'] += 1;
+                $_SESSION['last_attempt_time'] = time();
+
+                if ($_SESSION['attempts'] >= $max_attempts) {
+                    $error = "Too many failed login attempts. Please try again in 5 minutes.";
+                } else {
+                    $remaining = $max_attempts - $_SESSION['attempts'];
+                    $error = "Invalid password. You have $remaining attempt(s) left.";
+                }
             }
         } else {
-            // User doesn't exist, redirect to create account page
-            $stmt->close();
-            $conn->close();
-            header("Location: create_account.php");
-            exit;
+            $_SESSION['attempts'] += 1;
+            $_SESSION['last_attempt_time'] = time();
+            $error = "User not found. You have " . ($max_attempts - $_SESSION['attempts']) . " attempt(s) left.";
         }
-        
+
         $stmt->close();
         $conn->close();
     }

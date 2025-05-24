@@ -27,7 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($conn->connect_error) {
             $error = "Connection failed: " . $conn->connect_error;
         } else {
-            // Check if email already exists
             $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
             $stmt->bind_param("s", $email);
             $stmt->execute();
@@ -35,7 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($stmt->num_rows > 0) {
                 $error = "An account with this email already exists.";
             } else {
-                // Check if username exists
                 $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
                 $stmt->bind_param("s", $username);
                 $stmt->execute();
@@ -43,7 +41,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($stmt->num_rows > 0) {
                     $error = "Username is already taken.";
                 } else {
-                    // Hash and insert user
                     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
                     $stmt = $conn->prepare("INSERT INTO users (username, password, email) VALUES (?, ?, ?)");
                     $stmt->bind_param("sss", $username, $hashed_password, $email);
@@ -68,10 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Create Account</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Jay Kshirsagar 105912265">
-    <meta name="description" content="Create an account for Terrible Software Inc.">
-    <meta name="keywords" content="Login users, Terrible Software Inc., HTML, CSS, Javascript">
-
 </head>
 <body>
     <h2>Create Account</h2>
@@ -80,17 +73,69 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php if (isset($success)) echo "<div class='success'>$success</div>"; ?>
 
     <form method="post" action="">
-        <label>Username:</label>
-        <input type="text" name="username" required value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>"><br>
+        <fieldset>
+            <legend>Personal Information</legend>
+            <label>First Name:</label>
+            <input type="text" name="first_name" required><br>
+            <label>Last Name:</label>
+            <input type="text" name="last_name" required><br>
+            <label>Date of Birth:</label>
+            <input type="date" name="dob" required><br>
+            <label>Gender:</label>
+            <input type="radio" name="gender" value="Male" required> Male
+            <input type="radio" name="gender" value="Female" required> Female<br>
+        </fieldset>
 
-        <label>Email:</label>
-        <input type="email" name="email" required value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>"><br>
+        <fieldset>
+            <legend>Address</legend>
+            <label>Street Address:</label>
+            <input type="text" name="street_address"><br>
+            <label>Suburb/Town:</label>
+            <input type="text" name="suburb"><br>
+            <label>State:</label>
+            <select name="state">
+                <option value="">Select your state</option>
+                <option value="VIC">VIC</option>
+                <option value="NSW">NSW</option>
+                <option value="QLD">QLD</option>
+                <option value="WA">WA</option>
+                <option value="SA">SA</option>
+                <option value="TAS">TAS</option>
+                <option value="ACT">ACT</option>
+                <option value="NT">NT</option>
+            </select><br>
+            <label>Postcode:</label>
+            <input type="text" name="postcode"><br>
+        </fieldset>
 
-        <label>Password:</label>
-        <input type="password" name="password" required><br>
+        <fieldset>
+            <legend>Contact Information</legend>
+            <label>Email:</label>
+            <input type="email" name="email" required><br>
+            <label>Phone:</label>
+            <input type="text" name="phone"><br>
+        </fieldset>
 
-        <label>Confirm Password:</label>
-        <input type="password" name="confirm_password" required><br>
+        <fieldset>
+            <legend>Required Technical</legend>
+            <label>Skills:</label><br>
+            <input type="checkbox" name="skills[]" value="HTML"> HTML<br>
+            <input type="checkbox" name="skills[]" value="CSS"> CSS<br>
+            <input type="checkbox" name="skills[]" value="JavaScript"> JavaScript<br>
+            <input type="checkbox" name="skills[]" value="Other"> Other skills<br>
+            <label>Please specify:</label><br>
+            <textarea name="other_skills"></textarea>
+        </fieldset>
+
+        <fieldset>
+            <legend>Account Info</legend>
+            <label>Username:</label>
+            <input type="text" name="username" required><br>
+            <label>Password:</label>
+            <input type="password" name="password" required><br>
+            <label>Confirm Password:</label>
+            <input type="password" name="confirm_password" required><br>
+        </fieldset>
 
         <input type="submit" value="Create Account">
     </form>

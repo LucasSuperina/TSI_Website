@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2025 at 04:31 AM
+-- Generation Time: May 24, 2025 at 10:11 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -54,16 +54,22 @@ CREATE TABLE `eoi` (
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `email` varchar(100) NOT NULL
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `dob` date NOT NULL,
+  `gender` enum('Male','Female','Other') NOT NULL,
+  `street_address` varchar(255) NOT NULL,
+  `suburb` varchar(100) NOT NULL,
+  `state` varchar(50) NOT NULL,
+  `postcode` varchar(10) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `skill_html` tinyint(1) DEFAULT 0,
+  `skill_css` tinyint(1) DEFAULT 0,
+  `skill_js` tinyint(1) DEFAULT 0,
+  `other_skills` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `username`, `password`, `email`) VALUES
-(1, 'Jay', '105912265', 'jayk869@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -97,7 +103,7 @@ ALTER TABLE `eoi`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
