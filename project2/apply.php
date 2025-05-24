@@ -33,50 +33,62 @@
         $user_id = $_SESSION['loggedin'];
         $job_ref = $_POST['job-reference-number'];
 
-        $query = "SELECT * FROM users WHERE id = ?";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        // Check for existing application
+        $check = $conn->prepare("SELECT * FROM eoi WHERE JobRefNumber = ? AND Email = (SELECT email FROM users WHERE id = ?)");
+        $check->bind_param("si", $job_ref, $user_id);
+        $check->execute();
+        $existing = $check->get_result();
 
-        if ($user = $result->fetch_assoc()) {
-            $skills = [];
-            if ($user['skill_html']) $skills[] = "HTML";
-            if ($user['skill_css']) $skills[] = "CSS";
-            if ($user['skill_js']) $skills[] = "JavaScript";
+        if ($existing->num_rows > 0) {
+            echo "<script>alert('You have already applied for this job.');</script>";
+        } else {
+            $query = "SELECT * FROM users WHERE id = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("i", $user_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-            // Assign skill values
-            $skill1 = isset($skills[0]) ? $skills[0] : NULL;
-            $skill2 = isset($skills[1]) ? $skills[1] : NULL;
-            $skill3 = isset($skills[2]) ? $skills[2] : NULL;
+            if ($user = $result->fetch_assoc()) {
+                $skills = [];
+                if ($user['skill_html']) $skills[] = "HTML";
+                if ($user['skill_css']) $skills[] = "CSS";
+                if ($user['skill_js']) $skills[] = "JavaScript";
 
-            $insert = $conn->prepare("INSERT INTO eoi (JobRefNumber, FirstName, LastName, StreetAddress, Suburb, State, Postcode, Email, Phone, Skill1, Skill2, Skill3, OtherSkills, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'New')");
-            $insert->bind_param("sssssssssssss",
-                $job_ref,
-                $user['first_name'],
-                $user['last_name'],
-                $user['street_address'],
-                $user['suburb'],
-                $user['state'],
-                $user['postcode'],
-                $user['email'],
-                $user['phone'],
-                $skill1,
-                $skill2,
-                $skill3,
-                $user['other_skills']
-            );
+                // Assign skill values
+                $skill1 = isset($skills[0]) ? $skills[0] : NULL;
+                $skill2 = isset($skills[1]) ? $skills[1] : NULL;
+                $skill3 = isset($skills[2]) ? $skills[2] : NULL;
 
-            if ($insert->execute()) {
-                echo "<script>alert('Application submitted successfully!');</script>";
-            } else {
-                echo "<script>alert('Error submitting application: " . $insert->error . "');</script>";
+                $insert = $conn->prepare("INSERT INTO eoi (JobRefNumber, FirstName, LastName, StreetAddress, Suburb, State, Postcode, Email, Phone, Skill1, Skill2, Skill3, OtherSkills, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'New')");
+                $insert->bind_param("sssssssssssss",
+                    $job_ref,
+                    $user['first_name'],
+                    $user['last_name'],
+                    $user['street_address'],
+                    $user['suburb'],
+                    $user['state'],
+                    $user['postcode'],
+                    $user['email'],
+                    $user['phone'],
+                    $skill1,
+                    $skill2,
+                    $skill3,
+                    $user['other_skills']
+                );
+
+                if ($insert->execute()) {
+                    echo "<script>alert('Application submitted successfully!');</script>";
+                } else {
+                    echo "<script>alert('Error submitting application: " . $insert->error . "');</script>";
+                }
+
+                $insert->close();
             }
 
-            $insert->close();
+            $stmt->close();
         }
 
-        $stmt->close();
+        $check->close();
         $conn->close();
     }
 ?>
