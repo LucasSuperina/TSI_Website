@@ -85,6 +85,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $_SESSION['attempts'] < $max_attempt
 <html>
 <head>
     <title>Login Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Jay Kshirsagar 105912265">
+    <meta name="description" content="Login page for Terrible Software Inc.">
+    <meta name="keywords" content="Login, Terrible Software Inc., Authentication, User Login">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>Terrible Software Inc - Home</title>
 </head>
 <body>
     <h2>Login</h2>

@@ -1,4 +1,5 @@
 <!--LUCAS SUPERINA 105914669-->
+<!--Jay Kshirsagar 105912265-->
 
 <?php
     define("NAME", 0);
@@ -13,32 +14,42 @@
         ["Jobs", "jobs.php"],
         ["Apply", "apply.php"],
     ];
-    function createHeader($_current_page_name) { 
+
+    function createHeader($_current_page_name) {
         global $Name_Link_Pairs;
         ?>
         <header>
-                <div class="logo">
-                    <img src="./styles/images/company_logo.png" alt="Terrible Software Limited Inc. logo">
-                    <a href="index.php">Terrible Software Inc.</a>
-                
-                    <nav class="navbar">
-                        <ul class="nav-links">
-                            <?php 
-                            for ($i = 0; $i < sizeof($Name_Link_Pairs); $i++) {
-                                $Current_Pair = $Name_Link_Pairs[$i];
-                                $Current_Name = $Current_Pair[NAME];
-                                $Current_Link = $Current_Pair[LINK];
+            <div class="logo">
+                <img src="./styles/images/company_logo.png" alt="Terrible Software Limited Inc. logo">
+                <a href="index.php">Terrible Software Inc.</a>
 
-                                $Current_Link_Class = INACTIVE_LINK_CLASS;
-                                if ($Current_Name == $_current_page_name) {
-                                    $Current_Link_Class = ACTIVE_LINK_CLASS;
-                                }
-                                
-                                echo "<li class=$Current_Link_Class><a href=$Current_Link>$Current_Name</a></li>";
-                            }   
-                            ?>
-                        </ul>
-                    </nav>
-                </div>
-            </header>
-   <?php }; ?>
+                <nav class="navbar">
+                    <ul class="nav-links">
+                        <?php 
+                        for ($i = 0; $i < sizeof($Name_Link_Pairs); $i++) {
+                            $Current_Pair = $Name_Link_Pairs[$i];
+                            $Current_Name = $Current_Pair[NAME];
+                            $Current_Link = $Current_Pair[LINK];
+
+                            $Current_Link_Class = INACTIVE_LINK_CLASS;
+                            if ($Current_Name == $_current_page_name) {
+                                $Current_Link_Class = ACTIVE_LINK_CLASS;
+                            }
+
+                            echo "<li class=$Current_Link_Class><a href=$Current_Link>$Current_Name</a></li>";
+                        }   
+                        ?>
+
+                        //button added by Jay
+                        <?php if (isset($_SESSION['loggedin'])): ?>
+                            <li><form method="post" action="logout.php" style="display:inline;">
+                                <button type="submit" class="logout-button">Logout</button>
+                            </form></li>
+                        <?php endif; ?>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    <?php
+    }
+?>
