@@ -1,12 +1,14 @@
 <!--MAGGIE XIN YI LAW 103488683-->
+<!-- JAY KSHIRSAGAR 105912265 -->
 
 <!-- This is the application page for Terrible Software Inc. where users can apply for jobs. -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Maggie Xin Yi Law 103488683">
+    <meta name="author" content="Maggie Xin Yi Law 103488683 and Jay Kshirsagar 105912265">
     <meta name="description" content="An application page for Terrible Software Inc. where users can apply for jobs.">
     <meta name="keywords" content="Job, Job Application, Application Form, Terrible Software Inc., HTML, CSS, Javascript">
     <link rel="stylesheet" href="./styles/styles.css">
@@ -14,21 +16,81 @@
 </head>
 
 <?php
+    session_start();
     include "header.inc";
+
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && !isset($_SESSION['loggedin'])) {
+        header("Location: login.php");
+        exit();
+    }
+
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_SESSION['loggedin'])) {
+        $conn = new mysqli("localhost", "root", "", "terrible_db");
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $user_id = $_SESSION['loggedin'];
+        $job_ref = $_POST['job-reference-number'];
+
+        $query = "SELECT * FROM users WHERE id = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($user = $result->fetch_assoc()) {
+            $skills = [];
+            if ($user['skill_html']) $skills[] = "HTML";
+            if ($user['skill_css']) $skills[] = "CSS";
+            if ($user['skill_js']) $skills[] = "JavaScript";
+
+            // Assign skill values
+            $skill1 = isset($skills[0]) ? $skills[0] : NULL;
+            $skill2 = isset($skills[1]) ? $skills[1] : NULL;
+            $skill3 = isset($skills[2]) ? $skills[2] : NULL;
+
+            $insert = $conn->prepare("INSERT INTO eoi (JobRefNumber, FirstName, LastName, StreetAddress, Suburb, State, Postcode, Email, Phone, Skill1, Skill2, Skill3, OtherSkills, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'New')");
+            $insert->bind_param("sssssssssssss",
+                $job_ref,
+                $user['first_name'],
+                $user['last_name'],
+                $user['street_address'],
+                $user['suburb'],
+                $user['state'],
+                $user['postcode'],
+                $user['email'],
+                $user['phone'],
+                $skill1,
+                $skill2,
+                $skill3,
+                $user['other_skills']
+            );
+
+            if ($insert->execute()) {
+                echo "<script>alert('Application submitted successfully!');</script>";
+            } else {
+                echo "<script>alert('Error submitting application: " . $insert->error . "');</script>";
+            }
+
+            $insert->close();
+        }
+
+        $stmt->close();
+        $conn->close();
+    }
 ?>
 
 <body class="apply">
     <div class="container">
         <div class="glass-container">
-            <?php
-                createHeader("Apply");
-            ?>
+            <?php createHeader("Apply"); ?>
 
             <div class="content">
                 <div class="main">
                     <h1>Application Form</h1>
                     <hr>
-                    <form action="process_eoi.php" method="post" novalidate> <!-- Disabled client-side validation -->
+                    <form action="" method="post" novalidate>
                         <br>
                         <label for="job-reference-number">Job Reference No. : </label>
                         <select name="job-reference-number" id="job-reference-number">
@@ -36,73 +98,6 @@
                             <option value="SD123">Software Engineer - SD123</option>
                         </select><br><br>
 
-                        <fieldset>
-                            <legend>Personal Information</legend><br>
-                            <label for="first-name">First Name: </label>
-                            <input type="text" id="first-name" name="first-name" required pattern="[A-Za-z\\s]{1,20}">
-                            <label for="last-name">Last Name: </label>
-                            <input type="text" id="last-name" name="last-name" required pattern="[A-Za-z\\s]{1,20}"><br><br>
-                            
-                            <label for="dob">Date of Birth: </label>
-                            <input type="date" id="dob" name="dob" required><br><br>
-                            
-                            <fieldset>
-                                <legend>Gender</legend><br>
-                                <input type="radio" id="male" name="gender" value="male" required checked>
-                                <label for="male">Male</label>
-                                <input type="radio" id="female" name="gender" value="female" required>
-                                <label for="female">Female</label><br><br>
-                            </fieldset><br><br>
-                            
-                            <fieldset>
-                                <legend>Address</legend><br>
-                                <label for="street-address">Street Address: </label><br>
-                                <input type="text" id="street-address" name="street-address" required maxlength="40"><br><br>
-
-                                <label for="suburb">Suburb/Town: </label><br>
-                                <input type="text" id="suburb" name="suburb" required maxlength="40"><br><br>
-
-                                <label for="state">State: </label><br>
-                                <select name="state" id="state" required>
-                                    <option value="" selected hidden>Select your state</option>
-                                    <option value="NSW">NSW</option>
-                                    <option value="VIC">VIC</option>
-                                    <option value="QLD">QLD</option>
-                                    <option value="SA">SA</option>
-                                    <option value="WA">WA</option>
-                                    <option value="TAS">TAS</option>
-                                    <option value="NT">NT</option>
-                                    <option value="ACT">ACT</option>
-                                </select><br><br>
-
-                                <label for="postcode">Postcode: </label><br>
-                                <input type="text" id="postcode" name="postcode" required pattern="[0-9]{4}"><br><br>
-                            </fieldset><br><br>
-
-                            <fieldset>
-                                <legend>Contact Information</legend><br>
-                                <label for="email">Email: </label>
-                                <input type="email" id="email" name="email" required ><br><br>
-                                
-                                <label for="phone">Phone: </label>
-                                <input type="tel" id="phone" name="phone" required pattern="[0-9\\s]{8,12}"><br><br>
-                            </fieldset><br><br>
-                            
-                            <fieldset>
-                                <legend>Required Technical</legend><br>
-                                <p>Skills: </p>
-                                <input type="checkbox" id="html" name="skills[]" value="HTML" checked>
-                                <label for="html">HTML</label><br>
-                                <input type="checkbox" id="css" name="skills[]" value="CSS">
-                                <label for="css">CSS</label><br>
-                                <input type="checkbox" id="javascript" name="skills[]" value="JavaScript">
-                                <label for="javascript">JavaScript</label><br>
-                                <input type="checkbox" id="other-skills" name="skills[]" value="Other">
-                                <label for="other-skills">Other skills</label><br><br>
-                                <label for="other-skills-text">Please specify: </label><br>
-                                <textarea name="others" id="other-skills-text"></textarea><br><br>
-                            </fieldset><br>
-                        </fieldset><br><br>
                         <button type="submit" name="submit">Apply</button>
                     </form>
                 </div>
@@ -110,9 +105,6 @@
 
         </div>
     </div>
-    <?php
-        include "footer.inc"
-    ?>
+    <?php include "footer.inc"; ?>
 </body>
-
 </html>

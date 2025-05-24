@@ -2,6 +2,8 @@
 <!-- Part of Enhancements -->
 
 <?php
+
+
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -10,9 +12,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
+    $first_name = trim($_POST['first_name']);
+    $last_name = trim($_POST['last_name']);
+    $dob = $_POST['dob'];
+    $gender = $_POST['gender'];
+    $street_address = trim($_POST['street_address']);
+    $suburb = trim($_POST['suburb']);
+    $state = $_POST['state'];
+    $postcode = trim($_POST['postcode']);
+    $phone = trim($_POST['phone']);
+
+    $skills = isset($_POST['skills']) ? $_POST['skills'] : [];
+    $skill_html = in_array("HTML", $skills) ? 1 : 0;
+    $skill_css = in_array("CSS", $skills) ? 1 : 0;
+    $skill_js = in_array("JavaScript", $skills) ? 1 : 0;
+    $other_skills = isset($_POST['other_skills']) ? trim($_POST['other_skills']) : '';
+
     // Input validation
-    if (empty($username) || empty($email) || empty($password) || empty($confirm_password)) {
-        $error = "All fields are required";
+    if (empty($username) || empty($email) || empty($password) || empty($confirm_password) || empty($first_name) || empty($last_name) || empty($dob) || empty($gender)) {
+        $error = "All required fields must be filled";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = "Please enter a valid email address";
     } elseif (!preg_match('/^[a-zA-Z][a-zA-Z0-9_]{2,29}$/', $username)) {
@@ -42,8 +60,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $error = "Username is already taken.";
                 } else {
                     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-                    $stmt = $conn->prepare("INSERT INTO users (username, password, email) VALUES (?, ?, ?)");
-                    $stmt->bind_param("sss", $username, $hashed_password, $email);
+                    $stmt = $conn->prepare("INSERT INTO users 
+                        (username, password, email, first_name, last_name, dob, gender, street_address, suburb, state, postcode, phone, skill_html, skill_css, skill_js, other_skills) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    $stmt->bind_param("sssssssssssiiiss", 
+                        $username, $hashed_password, $email, 
+                        $first_name, $last_name, $dob, $gender, 
+                        $street_address, $suburb, $state, $postcode, $phone, 
+                        $skill_html, $skill_css, $skill_js, $other_skills);
+
                     if ($stmt->execute()) {
                         $success = "Account created successfully! Redirecting to login...";
                         header("refresh:2;url=login.php");
