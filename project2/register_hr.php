@@ -7,6 +7,8 @@
 session_start();
 require_once("settings.php");
 
+$company_verification_code = "TSI2025"; // Hardcoded verification code for simplicity
+
 // Database connection
 // Check if the session is already started
 if (session_status() == PHP_SESSION_NONE) {
@@ -14,8 +16,8 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 // Initialize variables
-$username = $password = $confirm_password = "";
-$username_err = $password_err = $confirm_password_err = $success_msg = "";
+$username = $password = $confirm_password = $verify_code = "";
+$username_err = $password_err = $confirm_password_err = $verify_code_err = $success_msg = "";
 
 // If form submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -64,8 +66,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+    // Validate verification code
+    if (empty(trim($_POST["verify_code"]))) {
+        $verify_code_err = "Please enter the verification code.";
+    } else {
+        $verify_code = trim($_POST["verify_code"]);
+        if ($verify_code !== $company_verification_code) {
+            $verify_code_err = "Invalid verification code.";
+        }
+    }
+
     // If all validation passed, insert into database
-    if (empty($username_err) && empty($password_err) && empty($confirm_password_err)) {
+    if (empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($verify_code_err)) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Encrypt password
         $sql = "INSERT INTO hr_users (username, password) VALUES (?, ?)";
 
@@ -115,16 +127,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <!-- Registration Form -->
                     <form action="register_hr.php" method="post">
                         <label>Username</label>
-                        <input type="text" name="username" value="<?php echo htmlspecialchars($username); ?>">
+                        <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($username); ?>">
                         <span style="color:red;"><?php echo $username_err; ?></span><br><br>
 
                         <label>Password</label>
-                        <input type="password" name="password">
+                        <input type="password" id="password" name="password">
                         <span style="color:red;"><?php echo $password_err; ?></span><br><br>
 
                         <label>Confirm Password</label>
-                        <input type="password" name="confirm_password">
+                        <input type="password" id="confirm_password" name="confirm_password">
                         <span style="color:red;"><?php echo $confirm_password_err; ?></span><br><br>
+
+                        <label for="verify_code">Verification Code</label>
+                        <input type="text" id="verify_code" name="verify_code" required>
+                        <span style="color:red;"><?php echo $verify_code_err; ?></span><br><br>
 
                         <button type="submit" name="register">Register</button>
                     </form>
