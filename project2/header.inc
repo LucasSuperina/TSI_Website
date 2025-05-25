@@ -12,6 +12,8 @@
         ["About", "about.php"],
         ["Jobs", "jobs.php"],
         ["Apply", "apply.php"],
+        ["User Account", "applicant_login.php"],
+        ["Admin Account", "manage.php"],
     ];
     function createHeader($_current_page_name) { 
         global $Name_Link_Pairs;
