@@ -122,7 +122,7 @@ if (session_status() == PHP_SESSION_NONE) {
             }
             ?>
 
-            <button><a href="manage_logout.php">Logout</a></button>
+            <button><a href="logout.php">Logout</a></button>
             <h2>Welcome, <?php echo $_SESSION['username']; ?>!</h2>
             <h1>Manage EOIs</h1>
             <hr>
@@ -169,8 +169,9 @@ if (session_status() == PHP_SESSION_NONE) {
                 if (!empty($_GET['last_name'])) $filters[] = "LastName = '" . mysqli_real_escape_string($conn, $_GET['last_name']) . "'";
                 $where_clause = count($filters) > 0 ? "WHERE " . implode(" AND ", $filters) : "";
                 $sort_clause = !empty($_GET['sort_by']) ? "ORDER BY " . $_GET['sort_by'] : "";
-            
-                $query = "SELECT * FROM eoi $where_clause $sort_clause"; // Selects all columns from the eoi table where the filters match, & optional sort order. The WHERE clause is built dynamically based on the filters provided by the user.
+                // Selects all columns from the eoi table where the filters match, & optional sort order.
+                // The WHERE clause is built dynamically based on the filters provided by the user.
+                $query = "SELECT * FROM eoi $where_clause $sort_clause"; 
                 // WHERE JobReferenceNumber = 'ABC123' AND FirstName = 'John'   // ORDER BY LastName
                 $result = mysqli_query($conn, $query);
             
