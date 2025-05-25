@@ -1,6 +1,16 @@
 <!--MAGGIE XIN YI LAW 103488683-->
 
 <?php
+// Start session
+session_start();
+require_once("settings.php");
+
+// Database connection
+// Check if the session is already started
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 // Enable error reporting (for development only)
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -9,12 +19,6 @@ error_reporting(E_ALL);
 if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["submit"])) {
     header("Location: apply.php");
     exit();
-}
-
-require_once("settings.php");
-$conn = @mysqli_connect($host, $username, $password, $database);
-if (!$conn) {
-    die("Database connection failed: " . mysqli_connect_error());
 }
 
 function clean_input($data) {
@@ -67,25 +71,6 @@ if (in_array("Other", $skills) && empty($other_skills)) {
     $errors[] = "Please describe your 'Other' skill.";
 }
 
-
-if (count($errors) > 0) {
-    include_once("header.inc");
-    createHeader("Form Error");
-
-    echo '<div class="error-box" style="margin: 3em auto; max-width: 600px; padding: 2em; border-radius: 12px; box-shadow: 0 0 15px rgba(255,0,0,0.2); background: #fff5f5; color: #c0392b;">';
-    echo "<h2 style='color: #c0392b;'>Submission Error</h2>";
-    echo "<p>The following issues were found in your application:</p><ul style='text-align: left;'>";
-    foreach ($errors as $err) {
-        echo "<li>$err</li>";
-    }
-    echo "</ul>";
-    echo "<a href='apply.php' style='margin-top: 1.5em; display: inline-block; padding: 0.6em 1.5em; background: #c0392b; color: white; border-radius: 6px; text-decoration: none;'>Return to Application Form</a>";
-    echo "</div>";
-
-    include_once("footer.inc");
-    exit();
-}
-
 $create_table = "
 CREATE TABLE IF NOT EXISTS eoi (
     EOInumber INT AUTO_INCREMENT PRIMARY KEY,
@@ -118,25 +103,68 @@ $stmt = mysqli_prepare($conn, $query);
 mysqli_stmt_bind_param($stmt, "ssssssssssssssss", 
     $reference_number, $first_name, $last_name, $dob, $gender, $street_address, $suburb, $state, $postcode,
     $email, $phone, $skill1, $skill2, $skill3, $skill4, $other_skills);
-
-if (mysqli_stmt_execute($stmt)) {
-    $eoi_number = mysqli_insert_id($conn);
-    include_once("header.inc");
-    createHeader("Confirmation");
-
-    echo '<div class="confirmation-box" style="margin: 3em auto; max-width: 600px; padding: 2em; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.1); background: #f4f9ff; text-align: center;">';
-    echo "<h2 style='color: #2a7ae2;'>Application Submitted Successfully!</h2>";
-    echo "<p>Thank you, <strong>$first_name $last_name</strong>, for your application.</p>";
-    echo "<p>Your EOI Number is: <strong style='color: #e26d2a;'>$eoi_number</strong></p>";
-    echo "<p>A confirmation has been sent to <strong>$email</strong>.</p>";
-    echo "<a href='index.php' style='margin-top: 1.5em; display: inline-block; padding: 0.6em 1.5em; background: #2a7ae2; color: white; border-radius: 6px; text-decoration: none;'>Return to Home</a>";
-    echo "</div>";
-
-    include_once("footer.inc");
-} else {
-    echo "<p>Something went wrong. Please try again later.</p>";
-}
-
-mysqli_stmt_close($stmt);
-mysqli_close($conn);
 ?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Maggie Xin Yi Law 103488683">
+    <meta name="description" content="Process EOIs for Terrible Software Inc.">
+    <meta name="keywords" content="EOI, Job Application, Management, Terrible Software Inc., HTML, CSS, Javascript">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>Terrible Software Inc - Process EOIs</title>
+</head>
+
+<body class="process_eoi">
+    <div class="container">
+        <div class="glass-container">
+            <?php
+            // Check for validation errors
+            if (count($errors) > 0) {
+                include_once("header.inc");
+                createHeader("Form Error");
+            
+                echo '<div class="error_box">';
+                echo "<h2>Submission Error</h2>";
+                echo "<p>The following issues were found in your application:</p><ul style='text-align: left;'>";
+                foreach ($errors as $err) {
+                    echo "<li>$err</li>";
+                }
+                echo "</ul>";
+                echo "<a href='apply.php' style='margin-top: 1.5em; display: inline-block; padding: 0.6em 1.5em; background: #c0392b; color: white; border-radius: 6px; text-decoration: none;'>Return to Application Form</a>";
+                echo "</div>";
+            
+                include_once("footer.inc");
+                exit();
+            }
+            // If no errors, proceed with database insertion
+            // Execute the prepared statement
+            if (mysqli_stmt_execute($stmt)) {
+                $eoi_number = mysqli_insert_id($conn);
+                include_once("header.inc");
+                createHeader("Confirmation");
+            
+                echo '<div class="confirmation_box">';
+                echo "<h2>Application Submitted Successfully!</h2>";
+                echo "<p>Thank you, <strong>$first_name $last_name</strong>, for your application.</p>";
+                echo "<p>Your EOI Number is: <strong style='color: #e26d2a;'>$eoi_number</strong></p>";
+                echo "<p>A confirmation has been sent to <strong>$email</strong>.</p>";
+                echo "<a href='index.php' style='margin-top: 1.5em; display: inline-block; padding: 0.6em 1.5em; background: #2a7ae2; color: white; border-radius: 6px; text-decoration: none;'>Return to Home</a>";
+                echo "</div>";
+            
+                include_once("footer.inc");
+            } else {
+                echo "<p>Something went wrong. Please try again later.</p>";
+            }
+
+            mysqli_stmt_close($stmt);
+            mysqli_close($conn);
+            ?>
+        </div>
+    </div>
+</body>
+
+

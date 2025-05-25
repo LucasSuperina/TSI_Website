@@ -3,11 +3,15 @@
 <!--HR Manager Registration Page-->
 
 <?php
-// Include database connection
+// Start session
+session_start();
 require_once("settings.php");
 
-// Establish connection to the database
-$conn = mysqli_connect($host, $username, $password, $database) or die("DB connection failed");
+// Database connection
+// Check if the session is already started
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Initialize variables
 $username = $password = $confirm_password = "";
