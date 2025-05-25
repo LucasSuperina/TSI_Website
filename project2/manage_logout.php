@@ -1,4 +1,5 @@
 <!--MAGGIE XIN YI LAW 103488683-->
+<!--Logout script for manage.php-->
 
 <?php
 session_start();
