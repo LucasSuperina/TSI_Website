@@ -1,4 +1,5 @@
 <!--MAGGIE XIN YI LAW 103488683-->
+<!--PUJAN KUKADIYA 105920242-->
 
 <?php
 // Start session to manage login and authentication state
@@ -12,7 +13,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">

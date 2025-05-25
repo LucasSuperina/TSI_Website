@@ -1,5 +1,7 @@
 <!--HTML: MAGGIE XIN YI LAW 103488683-->
 <!--PHP: PUJAN KUKADIYA 105920242-->
+<!-- Part of Enhancements -->
+
 <!--HR Manager Registration Page-->
 
 <?php
