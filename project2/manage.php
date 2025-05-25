@@ -119,7 +119,9 @@ if (session_status() == PHP_SESSION_NONE) {
                 $new_status = mysqli_real_escape_string($conn, $_POST['new_status']);
                 $query = "UPDATE eoi SET Status = '$new_status' WHERE EOInumber = '$eoi_number'"; //Updates the Status field (e.g., from New → Final) of a specific EOI application.
                 mysqli_query($conn, $query);
+                echo '<div class="confirmation_box">';
                 echo "<p>Updated EOI Number: $eoi_number to Status: $new_status</p>";
+                echo '</div>';
             }
             ?>
 
