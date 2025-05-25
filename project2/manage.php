@@ -3,7 +3,7 @@
 <?php
 // Start session to manage login and authentication state
 session_start();
-require_once("settings.php"); // Include database connection settings
+require_once"settings.php"; // Include database connection settings
 
 // Database connection
 // Check if the session is already started
@@ -70,18 +70,27 @@ if (session_status() == PHP_SESSION_NONE) {
 
             // Show login form if HR manager is not logged in
             if (!isset($_SESSION['hr_logged_in'])) {
-                echo "<h2>HR Manager Login</h2>";
-                // Display login error if any
-                // Use htmlspecialchars to prevent XSS attacks
-                if ($login_error) echo "<p style='color:red;'>$login_error</p>";
-                echo    '<form method="POST" action="manage.php">
-                            <label>Username:</label>
-                            <input type="text" name="username" required><br>
-                            <label>Password:</label>
-                            <input type="password" name="password" required><br>
-                            <input type="submit" name="login" value="Login">
-                        </form>';
-                exit();
+                echo '<div class="content">';
+                    echo '<div class="main">';
+                        echo "<h2>HR Manager Login</h2>";
+                        // Display login error if any
+                        // Use htmlspecialchars to prevent XSS attacks
+                        if ($login_error) echo "<p style='color:red;'>$login_error</p>";
+                        echo    '<form method="POST" action="manage.php">
+                                    <label>Username:</label>
+                                    <input type="text" name="username" required><br>
+                                    <label>Password:</label>
+                                    <input type="password" name="password" required><br>
+                                    <input type="submit" name="login" value="Login">
+                                </form>';
+                        echo "<a href='register_hr.php' style='margin-top: 1.5em; display: flex; padding: 0.6em 1.5em; background:rgba(248, 164, 155, 0.18); color: white; border-radius: 6px; text-decoration: none;'>No account yet?<strong>Register Here</strong></a>";
+                    echo '</div>';
+                echo '</div>';
+            echo '</div>';
+            echo '</div>';
+            include "footer.inc";
+            echo '</body>';
+            exit();
             }
 
             // Handle deletion of EOIs by job reference
@@ -208,7 +217,7 @@ if (session_status() == PHP_SESSION_NONE) {
         </div>
     </div>
     <?php
-    include"footer.inc";
+        include "footer.inc"
     ?>
 </body>
 </html>

@@ -108,34 +108,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php
                 createHeader("HR Manager Registration");
             ?>
+            <div class="content">
+                <div class="main">
+                    <h2>HR Manager Registration</h2>
+                    <hr><br><br>
+                    <!-- Registration Form -->
+                    <form action="register_hr.php" method="post">
+                        <label>Username</label>
+                        <input type="text" name="username" value="<?php echo htmlspecialchars($username); ?>">
+                        <span style="color:red;"><?php echo $username_err; ?></span><br><br>
 
-            <h2>HR Manager Registration</h2>
-            <!-- Registration Form -->
-            <form action="register_hr.php" method="post">
-                <label>Username</label>
-                <input type="text" name="username" value="<?php echo htmlspecialchars($username); ?>">
-                <span style="color:red;"><?php echo $username_err; ?></span><br><br>
+                        <label>Password</label>
+                        <input type="password" name="password">
+                        <span style="color:red;"><?php echo $password_err; ?></span><br><br>
 
-                <label>Password</label>
-                <input type="password" name="password">
-                <span style="color:red;"><?php echo $password_err; ?></span><br><br>
+                        <label>Confirm Password</label>
+                        <input type="password" name="confirm_password">
+                        <span style="color:red;"><?php echo $confirm_password_err; ?></span><br><br>
 
-                <label>Confirm Password</label>
-                <input type="password" name="confirm_password">
-                <span style="color:red;"><?php echo $confirm_password_err; ?></span><br><br>
-
-                <input type="submit" value="Register">
-            </form>
+                        <button type="submit" name="register">Register</button>
+                    </form>
+                    <!-- Display success message if registration is successful -->
+                    <?php
+                    if (!empty($success_msg)) {
+                        echo "<p style='color:green;'>$success_msg</p>";
+                    }
+                    ?>
+                </div>
+            </div>
         </div>
     </div>
+
+
+    <?php include_once'footer.inc'; ?>
 </body>
-
-
-<!-- Display success message if registration is successful -->
-<?php
-if (!empty($success_msg)) {
-    echo "<p style='color:green;'>$success_msg</p>";
-}
-?>
-
-<?php include_once('footer.inc'); ?>
+</html>

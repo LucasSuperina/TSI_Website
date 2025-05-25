@@ -397,7 +397,7 @@ td {
 
 /*----------------------------------*/
 /*----------APPLY PAGE, MAGGIE XIN YI LAW----------*/
-.apply{
+body.apply{
     color: #ffffff;
     background-color: #e9ff99;
     background-image:
@@ -411,7 +411,7 @@ td {
     min-height: 100vh;
 }
 
-.manage{
+body.manage{
     color: #ffffff;
     background-color: #99b9ff;
     background-image:
@@ -425,7 +425,7 @@ td {
     min-height: 100vh;
 }
 
-.register{
+body.register{
     color: #ffffff;
     background-color: #99ffc9;
     background-image:
@@ -439,7 +439,7 @@ td {
     min-height: 100vh;
 }
 
-.process_eoi{
+body.process_eoi{
     color: #ffffff;
     background-color: #79a5c9;
     background-image:
