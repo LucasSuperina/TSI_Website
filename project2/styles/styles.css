@@ -765,3 +765,10 @@ body.jobs{
         transform: translateY(0);
     }
 }
+
+/*--- align forms to the left ------*/
+.form-group {
+    text-align: left;
+    margin-left: 0;
+    align-items: flex-start;
+}
