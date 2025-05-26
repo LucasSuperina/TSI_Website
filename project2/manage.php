@@ -1,4 +1,5 @@
 <!--MAGGIE XIN YI LAW 103488683-->
+<!--PUJAN KUKADIYA 105920242-->
 
 <?php
 // Start session to manage login and authentication state
@@ -12,7 +13,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -32,7 +33,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <div class="container">
         <div class="glass-container">
             <?php
-                createHeader("Manage");
+                createHeader("Admin Account");
             ?>
 
 
@@ -122,7 +123,9 @@ if (session_status() == PHP_SESSION_NONE) {
                 $new_status = mysqli_real_escape_string($conn, $_POST['new_status']);
                 $query = "UPDATE eoi SET Status = '$new_status' WHERE EOInumber = '$eoi_number'"; //Updates the Status field (e.g., from New → Final) of a specific EOI application.
                 mysqli_query($conn, $query);
+                echo '<div class="confirmation_box">';
                 echo "<p>Updated EOI Number: $eoi_number to Status: $new_status</p>";
+                echo '</div>';
             }
             ?>
 
@@ -221,8 +224,8 @@ if (session_status() == PHP_SESSION_NONE) {
             ?>
         </div>
     </div>
-    <?php
-        include "footer.inc"
-    ?>
 </body>
+<?php
+    include "footer.inc"
+?>
 </html>

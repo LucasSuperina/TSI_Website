@@ -84,25 +84,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !$lockout) {
     <title>Terrible Software Inc - Applicant Login</title>
 </head>
 
+<?php
+    include_once("settings.php");
+
+    include "header.inc";
+?>
+
 <body class="manage">
     <?php include "header.inc"; ?>
     
     <div class="container">
         <div class="glass-container">
-            <?php createHeader("Manage"); ?>
-            
-            <div class="content">
-                <div class="main">
-                    <h2>Login</h2>
-                    <?php if ($lockout): ?>
-                        <div class="error-message">
-                            Account locked. Please try again in <?php echo htmlspecialchars($remaining_time); ?> seconds.
-                        </div>
-                    <?php elseif (!empty($error)): ?>
-                        <div class="error-message">
-                            <?php echo htmlspecialchars($error); ?>
-                        </div>
-                    <?php endif; ?>
+            <?php
+                createHeader("User Account");
+            ?>
+
+            <?php
+            session_start();
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $username = $_POST['username'];
+                $password = $_POST['password'];
+                
+                
+                // Check connection
+                if ($conn->connect_error) {
+                    $error = "Connection failed: " . $conn->connect_error;
+                } else {
+                    // Prepare statement to prevent SQL injection
+                    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+                    $stmt->bind_param("s", $username);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
                     
                     <?php if (!$lockout): ?>
                         <form method="POST" action="applicant_login.php" class="login-form">
@@ -120,14 +133,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !$lockout) {
                         </form>
                     <?php endif; ?>
                     
-                    <div class="register-link">
-                        <a href='create_account.php'>No account yet? <strong>Register Here</strong></a>
-                    </div>
+                    $stmt->close();
+                    $conn->close();
+                }
+            }
+            ?>
+            <h2>Login</h2>
+            <?php if (isset($error)) { echo "<p style='color: red;'>$error</p>"; } ?>
+            <form method="post" action="">
+                <div>
+                    <label>Username:</label>
+                    <input type="text" name="username" required>
                 </div>
-            </div>
+                <div>
+                    <label>Password:</label>
+                    <input type="password" name="password" required>
+                </div>
+                <div>
+                    <input type="submit" value="Login">
+                </div>
+            </form>
+            <p><a href="create_account.php">Don't have an account? Create one here</a></p>
         </div>
     </div>
-    
-    <?php include "footer.inc"; ?>
 </body>
+<?php
+    include "footer.inc"
+?>
 </html>
+

@@ -25,15 +25,12 @@
         <div class="glass-container">
             <?php createHeader("Jobs"); ?>
 
-            <div class="content">
-                <div class="main">
-                    <h1 id="job_listing_header">Job Listings</h1>
-                    <?php
-                        list_all_jobs($conn);
-                    ?>    
-                </div>
-            </div>
-
+            <main class="main">
+                <h1 id="job_listing_header">Job Listings</h1>
+                <?php
+                    list_all_jobs($conn);
+                ?>    
+            </main>
         </div>
     </div>
 </body>

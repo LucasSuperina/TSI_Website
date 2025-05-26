@@ -28,7 +28,8 @@
                 <div class="main">
                     <h1>Application Form</h1>
                     <hr>
-                    <form action="process_eoi.php" method="post" novalidate> <!-- Disabled client-side validation -->
+                    <!-- Disabled client-side validation -->
+                    <form action="process_eoi.php" method="post" novalidate>
                         <br>
                         <label for="job-reference-number">Job Reference No. : </label>
                         <select name="job-reference-number" id="job-reference-number">

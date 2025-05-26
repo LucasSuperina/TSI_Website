@@ -24,7 +24,7 @@
         $_Essential_QSKA = get_point_list_from_type($_Reference_Number, "Essential QSKA", $_conn);
         $_Prefered_QSKA = get_point_list_from_type($_Reference_Number, "Preferred QSKA", $_conn);
 
-        echo '<aside class="job-item">';
+        echo '<article class="job_listing">';
             echo "<h2>$_Title</h2>";
             echo "<p>Location: $_Location</p>";
             echo "<p>Salary: $_Salary_Formatted</p>";
@@ -39,7 +39,7 @@
             echo "<h3>Preferable</h3>";
             create_responsibilities_QSKA_list($_Prefered_QSKA, FALSE);
         echo "<a class='fake_button' href='apply.php'>Apply Now</a>";
-        echo "</aside>";
+        echo "</article>";
         echo "<br><br>";
 
     }
@@ -49,8 +49,10 @@
         $result = mysqli_query($_conn, $sql);
 
         $return_array = [];
+        $i = 0;
         while ($point = mysqli_fetch_assoc($result)) {
-            $return_array[ $point["Point_ID"] ] = $point["Point_Text"];
+            $return_array[ $i ] = $point["Point_Text"];
+            $i += 1;
         } 
 
         return $return_array;

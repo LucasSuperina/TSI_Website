@@ -1,5 +1,5 @@
 <!--MAGGIE XIN YI LAW 103488683-->
-<!--Logout script for manage.php-->
+<!-- Part of Enhancements -->
 
 <?php
 session_start();

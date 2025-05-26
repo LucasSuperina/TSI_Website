@@ -693,7 +693,7 @@ body.jobs{
     min-height: 100vh;
 }
 
-aside {
+.job_listing {
     border: 2px solid #cccccc;
     border-radius: 10px;
     padding: 40px; 
@@ -707,11 +707,11 @@ aside {
     animation: floatUp 0.5s ease-out forwards; 
 }
 
-aside h1, aside h2, aside h3, aside p, aside ul, aside li {
+.job_listing h1, .job_listing h2, .job_listing h3, .job_listing p, .job_listing ul, .job_listing li {
     margin: 5px 0;
 }
 
-aside h1 {
+.job_listing h1 {
     padding: 0px;
 }
 
