@@ -122,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !$lockout) {
                     <?php endif; ?>
                     
                     <div class="register-link">
-                        <a href="create_account.php">Don't have an account? Create one here</a>
+                        <a href='create_account.php' style='margin-top: 1.5em; display: flex; padding: 0.6em 1.5em; background:rgba(248, 164, 155, 0.18); color: white; border-radius: 6px; text-decoration: none;'>No account yet?<strong>Register Here</strong></a>
                     </div>
                 </div>
             </div>
