@@ -49,8 +49,10 @@
         $result = mysqli_query($_conn, $sql);
 
         $return_array = [];
+        $i = 0;
         while ($point = mysqli_fetch_assoc($result)) {
-            $return_array[ $point["Point_ID"] ] = $point["Point_Text"];
+            $return_array[ $i ] = $point["Point_Text"];
+            $i += 1;
         } 
 
         return $return_array;
