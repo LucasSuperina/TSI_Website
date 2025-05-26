@@ -128,8 +128,8 @@ if (session_status() == PHP_SESSION_NONE) {
             }
             ?>
 
-            <a class='fake_button' href='logout.php'>Logout</a>
             <h2>Welcome, <?php echo $_SESSION['username']; ?>!</h2>
+            <a class='fake_button' href='logout.php'>Logout</a>
             <h1>Manage EOIs</h1>
             <hr>
             <div class="content">
@@ -185,15 +185,16 @@ if (session_status() == PHP_SESSION_NONE) {
                 if (mysqli_num_rows($result) > 0) {
                     echo "<h2>Search Results</h2>";
                     echo "<p>Found " . mysqli_num_rows($result) . " EOIs matching the criteria.</p>";
-                    echo "<table border='1'>
-                            <tr>
-                                <th>EOI Number</th>
-                                <th>Job Ref</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Status</th>
-                                <th>Change Status</th>
-                            </tr>";
+                    echo "<table class='eoi-table'>";
+                    // Table headers
+                    echo "<tr>";
+                        echo "<th>EOI Number</th>";
+                        echo "<th>Job Reference Number</th>";
+                        echo "<th>First Name</th>";
+                        echo "<th>Last Name</th>";
+                        echo "<th>Status</th>";
+                        echo "<th>Change Status</th>";
+                    echo "</tr>";
                     while ($row = mysqli_fetch_assoc($result)) { //loop through all rows to display them in a table
                         echo "<tr>";
                         echo "<td>{$row['EOInumber']}</td>";
