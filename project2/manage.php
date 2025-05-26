@@ -33,7 +33,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <div class="container">
         <div class="glass-container">
             <?php
-                createHeader("Manage");
+                createHeader("Admin Account");
             ?>
 
 
@@ -220,8 +220,8 @@ if (session_status() == PHP_SESSION_NONE) {
             ?>
         </div>
     </div>
-    <?php
-        include "footer.inc"
-    ?>
 </body>
+<?php
+    include "footer.inc"
+?>
 </html>

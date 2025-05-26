@@ -22,7 +22,7 @@
     <div class="container">
         <div class="glass-container">
             <?php
-                createHeader("Manage");
+                createHeader("User Account");
             ?>
 
             <?php
@@ -95,9 +95,9 @@
             </div>
         </form>
          <p><a href="create_account.php">Don't have an account? Create one here</a></p>
+    </body>
     <?php
         include "footer.inc"
     ?>
-    </body>
 </html>
 
