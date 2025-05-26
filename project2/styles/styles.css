@@ -693,7 +693,7 @@ body.jobs{
     min-height: 100vh;
 }
 
-aside {
+article {
     border: 2px solid #cccccc;
     border-radius: 10px;
     padding: 40px; 
@@ -707,11 +707,11 @@ aside {
     animation: floatUp 0.5s ease-out forwards; 
 }
 
-aside h1, aside h2, aside h3, aside p, aside ul, aside li {
+article h1, article h2, article h3, article p, article ul, article li {
     margin: 5px 0;
 }
 
-aside h1 {
+article h1 {
     padding: 0px;
 }
 
