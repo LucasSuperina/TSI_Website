@@ -2,69 +2,6 @@
 <!--PUJAN KUKADIYA 105920242-->
 
 <?php
-function display_jobs_page($_conn) {
-    echo '<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Pujan Kukadiya 105920242, LUCAS SUPERINA 105914669">
-    <meta name="description" content="A job listing page for Terrible Software Inc., which lists all the available positions the company is hiring">
-    <meta name="keywords" content="Jobs, Hiring, Position, Machine Learning, Software Developer">
-    <link rel="stylesheet" href="./styles/styles.css">
-    <title>Terrible Software Inc - Jobs</title>
-</head>
-
-<body class="jobs">
-    <div class="container">
-        <div class="glass-container">
-            <header>
-                <div class="logo">
-                    <img src="./styles/images/company_logo.png" alt="Terrible Software Limited Inc. logo">
-                    <a href="index.php">Terrible Software Inc.</a>
-                
-                    <nav class="navbar">
-                        <ul class="nav-links">
-                            <li class="nav-link"><a href="index.php">Home</a></li>
-                            <li class="nav-link"><a href="about.php">About</a></li>
-                            <li class="nav-link active"><a href="jobs.php">Jobs</a></li>
-                            <li class="nav-link"><a href="apply.php">Apply</a></li>
-                            <li class="nav-link"><a href="applicant_login.php">User Account</a></li>
-                            <li class="nav-link"><a href="manage.php">Admin Account</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </header>
-
-            <div class="content">
-                <div class="main">
-                    <h1 id="job_listing_header">Job Listings</h1>';
-                    
-                    list_all_jobs($_conn);
-                    
-                    echo '
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <div class="container">
-            <div class="glass-container-footer">
-                <div class="footer">
-                    <ul>
-                        <li><a href="https://terrible-software-inc.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog?atlOrigin=eyJpIjoiZTBkZGQ2ODY2MzdlNGFkMWI1ODNiN2JjMDg1ZjNkYzkiLCJwIjoiaiJ9">Jira Project</a></li>
-                        <li><a href="https://github.com/LucasSuperina/TSI_Website" target="_blank">GitHub</a></li>
-                        <li><a href="mailto:info@terriblesoftwareinc.com">Email Us</a></li>
-                        <li>© 2025 Terrible Software Inc.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-</body>
-</html>';
-}
 
 function list_all_jobs($_conn) {
     $sql = "SELECT * FROM job_listing_info";
