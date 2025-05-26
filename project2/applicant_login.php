@@ -15,7 +15,9 @@
 </head>
 
 <?php
-    include"header.inc";
+    include_once("settings.php");
+
+    include "header.inc";
 ?>
 
 <body class="manage">
@@ -32,14 +34,6 @@
                 $username = $_POST['username'];
                 $password = $_POST['password'];
                 
-                // Database connection parameters
-                $servername = "localhost";
-                $db_username = "root"; // Change this to your database username
-                $db_password = "";     // Change this to your database password
-                $dbname = "terrible_db"; // Your database name
-                
-                // Connect to MySQL database
-                $conn = new mysqli($servername, $db_username, $db_password, $dbname);
                 
                 // Check connection
                 if ($conn->connect_error) {

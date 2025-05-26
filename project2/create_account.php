@@ -3,6 +3,7 @@
 
 <?php
 session_start();
+include_once("settings.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST['username']);
@@ -22,7 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/', $password)) {
         $error = "Password must be at least 8 characters and include uppercase, lowercase, number, and special character.";
     } else {
-        $conn = new mysqli("localhost", "root", "", "terrible_db");
 
         if ($conn->connect_error) {
             $error = "Connection failed: " . $conn->connect_error;
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $stmt->bind_param("sss", $username, $hashed_password, $email);
                     if ($stmt->execute()) {
                         $success = "Account created successfully! Redirecting to login...";
-                        header("refresh:2;url=login.php");
+                        header("refresh:2;url=applicant_login.php");
                     } else {
                         $error = "Error creating account: " . $stmt->error;
                     }
@@ -95,6 +95,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="submit" value="Create Account">
     </form>
 
-    <p>Already have an account? <a href="login.php">Login here</a></p>
+    <p>Already have an account? <a href="applicant_login.php">Login here</a></p>
 </body>
 </html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2025 at 08:07 PM
+-- Generation Time: May 26, 2025 at 02:53 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -144,6 +144,27 @@ INSERT INTO `job_listing_info_points` (`Point_ID`, `Reference Number`, `Point_Ty
 (17, 'SD123', 'Preferred QSKA', 'Experience with Agile development'),
 (18, 'SD123', 'Preferred QSKA', 'Knowledge of frontend frameworks like React or Angular');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `email`) VALUES
+(1, 'Jay', '105912265', 'jayk869@gmail.com'),
+(2, 'soup', '$2y$10$48j03BM3iBGYmMpzsoKRn.RFx6Nn/n8n1D7GBHQ.h0qmppVbsh7He', 'Soupmail@soup.com');
+
 --
 -- Indexes for dumped tables
 --
@@ -174,6 +195,14 @@ ALTER TABLE `job_listing_info_points`
   ADD KEY `Reference Number` (`Reference Number`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -188,6 +217,12 @@ ALTER TABLE `eoi`
 --
 ALTER TABLE `job_listing_info_points`
   MODIFY `Point_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
