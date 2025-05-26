@@ -82,7 +82,7 @@
                             <fieldset>
                                 <legend>Contact Information</legend><br>
                                 <label for="email">Email: </label>
-                                <input type="email" id="email" name="email" required ><br><br>
+                                <input type="email" id="email" name="email" required patter="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"><br><br>
                                 
                                 <label for="phone">Phone: </label>
                                 <input type="tel" id="phone" name="phone" required pattern="[0-9\\s]{8,12}"><br><br>
