@@ -4,7 +4,7 @@
 <?php
 // Start session to manage login and authentication state
 session_start();
-require_once"settings.php"; // Include database connection settings
+require_once "settings.php"; // Include database connection settings
 
 // Database connection
 // Check if the session is already started
