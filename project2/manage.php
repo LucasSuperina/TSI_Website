@@ -128,8 +128,8 @@ if (session_status() == PHP_SESSION_NONE) {
             }
             ?>
 
-            <a class='fake_button' href='logout.php'>Logout</a>
             <h2>Welcome, <?php echo $_SESSION['username']; ?>!</h2>
+            <a class='fake_button' href='logout.php'>Logout</a>
             <h1>Manage EOIs</h1>
             <hr>
             <div class="content">
