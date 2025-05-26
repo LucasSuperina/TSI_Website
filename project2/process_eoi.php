@@ -20,18 +20,17 @@ function clean_input($data) {
 }
 
 $reference_number = clean_input($_POST["job-reference-number"]);
-$first_name = clean_input($_POST["FirstName"]);
-$last_name = clean_input($_POST["LastName"]);
-$dob = clean_input($_POST["DOB"]);
-$gender = clean_input($_POST["Gender"]);
-$street_address = clean_input($_POST["StreetAddress"]);
-$suburb = clean_input($_POST["Suburb"]);
-$state = clean_input($_POST["State"]);
-$postcode = clean_input($_POST["Postcode"]);
-$email = clean_input($_POST["Email"]);
-$phone = clean_input($_POST["PhoneNumber"]);
-
-$other_skills = isset($_POST["OtherSkills"]) ? clean_input($_POST["OtherSkills"]) : "";
+$first_name = clean_input($_POST["first-name"]);
+$last_name = clean_input($_POST["last-name"]);
+$dob = clean_input($_POST["dob"]);
+$gender = clean_input($_POST["gender"]);
+$street_address = clean_input($_POST["street-address"]);
+$suburb = clean_input($_POST["suburb"]);
+$state = clean_input($_POST["state"]);
+$postcode = clean_input($_POST["postcode"]);
+$email = clean_input($_POST["email"]);
+$phone = clean_input($_POST["phone"]);
+$other_skills = isset($_POST["others"]) ? clean_input($_POST["others"]) : "";
 
 $skills = isset($_POST["skills"]) ? $_POST["skills"] : [];
 $skill1 = $skill2 = $skill3 = $skill4 = null;
