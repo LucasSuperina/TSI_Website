@@ -7,4 +7,4 @@ Control access to manage.php by checking username and password.
 Have access to the web site disabled for user a period of time on, say, three or more invalid login attempts.
 
 
-All of these have been done. The final enhancement applies for both "applicant" users, and "manager" users.
+All of these have been done. The final enhancement applies to just "applicant" users, on the "User Account" page.
