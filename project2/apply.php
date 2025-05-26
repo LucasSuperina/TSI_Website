@@ -28,7 +28,7 @@
                 <main class="main">
                     <h1>Application Form</h1>
                     <hr>
-                    <form action="process_eoi.php" method="post" novalidate="novalidate"> <!-- Disabled client-side validation -->
+                    <form action="process_eoi.php" method="post" > 
                         <br>
                         <label for="job-reference-number">Job Reference No. : </label>
                         <select name="job-reference-number" id="job-reference-number">
@@ -82,7 +82,7 @@
                             <fieldset>
                                 <legend>Contact Information</legend><br>
                                 <label for="email">Email: </label>
-                                <input type="email" id="email" name="email" required ><br><br>
+                                <input type="email" id="email" name="email" required patter="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"><br><br>
                                 
                                 <label for="phone">Phone: </label>
                                 <input type="tel" id="phone" name="phone" required pattern="[0-9\\s]{8,12}"><br><br>
