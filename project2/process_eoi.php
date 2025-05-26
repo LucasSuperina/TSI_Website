@@ -160,8 +160,9 @@ mysqli_stmt_bind_param($stmt, "ssssssssssssssss",
                 echo "</ul>";
                 echo "<a href='apply.php' style='margin-top: 1.5em; display: inline-block; padding: 0.6em 1.5em; background: #c0392b; color: white; border-radius: 6px; text-decoration: none;'>Return to Application Form</a>";
                 echo "</aside>";
-            
-                include_once("footer.inc");
+                echo "</div>";
+                echo "</div>";
+                include_once"footer.inc";
                 exit();
             }
 
@@ -177,8 +178,9 @@ mysqli_stmt_bind_param($stmt, "ssssssssssssssss",
                 echo "<p>A confirmation has been sent to <strong>$email</strong>.</p>";
                 echo "<a href='index.php' style='margin-top: 1.5em; display: inline-block; padding: 0.6em 1.5em; background: #2a7ae2; color: white; border-radius: 6px; text-decoration: none;'>Return to Home</a>";
                 echo "</aside>";
-            
-                include_once("footer.inc");
+                echo "</div>";
+                echo "</div>";
+                include_once"footer.inc";
             } else {
                 echo "<p>Something went wrong. Please try again later.</p>";
             }
