@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Create Account</title>
     <meta charset="UTF-8">
@@ -71,30 +71,60 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="author" content="Jay Kshirsagar 105912265">
     <meta name="description" content="Create an account for Terrible Software Inc.">
     <meta name="keywords" content="Login users, Terrible Software Inc., HTML, CSS, Javascript">
-
+    <link rel="stylesheet" href="./styles/styles.css">
 </head>
-<body>
-    <h2>Create Account</h2>
 
-    <?php if (isset($error)) echo "<div class='error'>$error</div>"; ?>
-    <?php if (isset($success)) echo "<div class='success'>$success</div>"; ?>
+<body class="manage">
+    <?php include "header.inc"; ?>
+    
+    <div class="container">
+        <div class="glass-container">
+            <?php createHeader("Create Account"); ?>
+            
+            <div class="content">
+                <div class="main">
+                    <h2>Create Account</h2>
 
-    <form method="post" action="">
-        <label>Username:</label>
-        <input type="text" name="username" required value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>"><br>
+                    <?php if (isset($error)): ?>
+                        <div class="error-message"><?php echo $error; ?></div>
+                    <?php endif; ?>
+                    
+                    <?php if (isset($success)): ?>
+                        <div class="success-message"><?php echo $success; ?></div>
+                    <?php endif; ?>
 
-        <label>Email:</label>
-        <input type="email" name="email" required value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>"><br>
+                    <form method="post" action="">
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" name="username" required 
+                                   value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required 
+                                   value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="confirm_password">Confirm Password:</label>
+                            <input type="password" id="confirm_password" name="confirm_password" required>
+                        </div>
+                        <br>
+                        <input type="submit" value="Create Account">
+                    </form>
 
-        <label>Password:</label>
-        <input type="password" name="password" required><br>
-
-        <label>Confirm Password:</label>
-        <input type="password" name="confirm_password" required><br>
-
-        <input type="submit" value="Create Account">
-    </form>
-
-    <p>Already have an account? <a href="login.php">Login here</a></p>
+                    <p>Already have an account? <a href="login.php">Login here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <?php include "footer.inc"; ?>
 </body>
 </html>

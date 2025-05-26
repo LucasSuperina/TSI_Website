@@ -1,103 +1,133 @@
 <!-- JAY KSHIRSAGAR 105912265 -->
+<!-- Pujan Kukadiya 105920242 -->
 <!-- Part of Enhancements -->
+
+<?php
+// Start session at the very beginning
+session_start();
+require_once("settings.php");
+
+// Initialize login attempt tracking
+if (!isset($_SESSION['login_attempts'])) {
+    $_SESSION['login_attempts'] = 0;
+}
+if (!isset($_SESSION['lockout_time'])) {
+    $_SESSION['lockout_time'] = 0;
+}
+
+$error = "";
+$lockout = false;
+$remaining_time = 0;
+
+// Check if user is in lockout period
+if ($_SESSION['login_attempts'] >= 3 && (time() - $_SESSION['lockout_time']) < 60) {
+    $lockout = true;
+    $remaining_time = 60 - (time() - $_SESSION['lockout_time']);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && !$lockout) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    
+    // Prepare statement to prevent SQL injection
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows > 0) {
+        // User exists, verify password
+        $user = $result->fetch_assoc();
+        if (password_verify($password, $user['password'])) {
+            // Password is correct - reset attempts
+            $_SESSION['login_attempts'] = 0;
+            $_SESSION['loggedin'] = true;
+            $_SESSION['username'] = $username;
+            $stmt->close();
+            $conn->close();
+            header("Location: index.php");
+            exit;
+        } else {
+            // Password is incorrect
+            $_SESSION['login_attempts']++;
+            if ($_SESSION['login_attempts'] >= 3) {
+                $_SESSION['lockout_time'] = time();
+                $error = "Too many failed attempts. Please try again in 60 seconds.";
+            } else {
+                $error = "Invalid username or password";
+            }
+        }
+    } else {
+        // User doesn't exist
+        $_SESSION['login_attempts']++;
+        if ($_SESSION['login_attempts'] >= 3) {
+            $_SESSION['lockout_time'] = time();
+            $error = "Too many failed attempts. Please try again in 60 seconds.";
+        } else {
+            $error = "Invalid username or password";
+        }
+    }
+    
+    $stmt->close();
+    $conn->close();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login Page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Maggie Xin Yi Law 103488683">
-    <meta name="description" content="Manage EOIs for Terrible Software Inc.">
+    <meta name="author" content="JAY KSHIRSAGAR 105912265, Pujan Kukadiya 105920242">
     <meta name="keywords" content="EOI, Job Application, Management, Terrible Software Inc., HTML, CSS, Javascript">
     <link rel="stylesheet" href="./styles/styles.css">
     <title>Terrible Software Inc - Applicant Login</title>
 </head>
 
-<?php
-    include"header.inc";
-?>
-
 <body class="manage">
+    <?php include "header.inc"; ?>
+    
     <div class="container">
         <div class="glass-container">
-            <?php
-                createHeader("Manage");
-            ?>
-
-            <?php
-            session_start();
-
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $username = $_POST['username'];
-                $password = $_POST['password'];
-                
-                // Database connection parameters
-                $servername = "localhost";
-                $db_username = "root"; // Change this to your database username
-                $db_password = "";     // Change this to your database password
-                $dbname = "terrible_db"; // Your database name
-                
-                // Connect to MySQL database
-                $conn = new mysqli($servername, $db_username, $db_password, $dbname);
-                
-                // Check connection
-                if ($conn->connect_error) {
-                    $error = "Connection failed: " . $conn->connect_error;
-                } else {
-                    // Prepare statement to prevent SQL injection
-                    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
-                    $stmt->bind_param("s", $username);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
+            <?php createHeader("Manage"); ?>
+            
+            <div class="content">
+                <div class="main">
+                    <h2>Login</h2>
+                    <?php if ($lockout): ?>
+                        <div class="error-message">
+                            Account locked. Please try again in <?php echo htmlspecialchars($remaining_time); ?> seconds.
+                        </div>
+                    <?php elseif (!empty($error)): ?>
+                        <div class="error-message">
+                            <?php echo htmlspecialchars($error); ?>
+                        </div>
+                    <?php endif; ?>
                     
-                    if ($result->num_rows > 0) {
-                        // User exists, verify password
-                        $user = $result->fetch_assoc();
-                        // Check if password is hashed or plain text (for your existing data)
-                        if (password_verify($password, $user['password']) || $password === $user['password']) {
-                            // Password is correct
-                            $_SESSION['loggedin'] = true;
-                            $_SESSION['username'] = $username;
-                            $stmt->close();
-                            $conn->close();
-                            header("Location: index.php");
-                            exit;
-                        } else {
-                            $error = "Invalid password";
-                        }
-                    } else {
-                        // User doesn't exist, redirect to create account page
-                        $stmt->close();
-                        $conn->close();
-                        header("Location: create_account.php");
-                        exit;
-                    }
+                    <?php if (!$lockout): ?>
+                        <form method="POST" action="applicant_login.php" class="login-form">
+                            <div class="form-group">
+                                <label for="username">Username:</label>
+                                <input type="text" id="username" name="username" required>
+                            </div><br>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" id="password" name="password" required>
+                            </div><br>
+                            <div class="form-group">
+                                <input type="submit" name="login" value="Login" class="login-btn">
+                            </div><br>
+                        </form>
+                    <?php endif; ?>
                     
-                    $stmt->close();
-                    $conn->close();
-                }
-            }
-            ?>
-    <h2>Login</h2>
-    <?php if (isset($error)) { echo "<p style='color: red;'>$error</p>"; } ?>
-        <form method="post" action="">
-            <div>
-                <label>Username:</label>
-                <input type="text" name="username" required>
+                    <div class="register-link">
+                        <a href='create_account.php'>No account yet? <strong>Register Here</strong></a>
+                    </div>
+                </div>
             </div>
-            <div>
-                <label>Password:</label>
-                <input type="password" name="password" required>
-            </div>
-            <div>
-                <input type="submit" value="Login">
-            </div>
-        </form>
-         <p><a href="create_account.php">Don't have an account? Create one here</a></p>
-    <?php
-        include "footer.inc"
-    ?>
-    </body>
+        </div>
+    </div>
+    
+    <?php include "footer.inc"; ?>
+</body>
 </html>
-

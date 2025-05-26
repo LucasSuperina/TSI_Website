@@ -77,10 +77,14 @@ if (session_status() == PHP_SESSION_NONE) {
                         // Use htmlspecialchars to prevent XSS attacks
                         if ($login_error) echo "<p style='color:red;'>$login_error</p>";
                         echo    '<form method="POST" action="manage.php">
+                                    <div class="form-group">
                                     <label>Username:</label>
-                                    <input type="text" name="username" required><br>
+                                    <input type="text" name="username" required>
+                                    </div><br>
+                                    <div class="form-group">
                                     <label>Password:</label>
-                                    <input type="password" name="password" required><br>
+                                    <input type="password" name="password" required>
+                                    </div><br>
                                     <input type="submit" name="login" value="Login">
                                 </form>';
                         echo "<a href='register_hr.php' style='margin-top: 1.5em; display: flex; padding: 0.6em 1.5em; background:rgba(248, 164, 155, 0.18); color: white; border-radius: 6px; text-decoration: none;'>No account yet?<strong>Register Here</strong></a>";
