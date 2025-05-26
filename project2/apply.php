@@ -107,6 +107,10 @@ if ($loggedIn) {
                                 <li>Email: <?php echo htmlspecialchars($prefillData['Email']); ?></li>
                                 <li>Phone: <?php echo htmlspecialchars($prefillData['PhoneNumber']); ?></li>
                                 <li>State: <?php echo htmlspecialchars($prefillData['State']); ?></li>
+                                <li>Skill1: <?php echo htmlspecialchars($prefillData['Skill1']); ?></li>
+                                <li>Skill2: <?php echo htmlspecialchars($prefillData['Skill2']); ?></li>    
+                                <li>Skill3: <?php echo htmlspecialchars($prefillData['Skill3']); ?></li>
+                                <li>Skill4: <?php echo htmlspecialchars($prefillData['Skill4']); ?></li>
                                 <li>Skills: <?php echo implode(', ', array_filter([
                                     $prefillData['Skill1'],
                                     $prefillData['Skill2'],
