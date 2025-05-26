@@ -20,17 +20,18 @@ function clean_input($data) {
 }
 
 $reference_number = clean_input($_POST["job-reference-number"]);
-$first_name = clean_input($_POST["first-name"]);
-$last_name = clean_input($_POST["last-name"]);
-$dob = clean_input($_POST["dob"]);
-$gender = clean_input($_POST["gender"]);
-$street_address = clean_input($_POST["street-address"]);
-$suburb = clean_input($_POST["suburb"]);
-$state = clean_input($_POST["state"]);
-$postcode = clean_input($_POST["postcode"]);
-$email = clean_input($_POST["email"]);
-$phone = clean_input($_POST["phone"]);
-$other_skills = isset($_POST["others"]) ? clean_input($_POST["others"]) : "";
+$first_name = clean_input($_POST["FirstName"]);
+$last_name = clean_input($_POST["LastName"]);
+$dob = clean_input($_POST["DOB"]);
+$gender = clean_input($_POST["Gender"]);
+$street_address = clean_input($_POST["StreetAddress"]);
+$suburb = clean_input($_POST["Suburb"]);
+$state = clean_input($_POST["State"]);
+$postcode = clean_input($_POST["Postcode"]);
+$email = clean_input($_POST["Email"]);
+$phone = clean_input($_POST["PhoneNumber"]);
+
+$other_skills = isset($_POST["OtherSkills"]) ? clean_input($_POST["OtherSkills"]) : "";
 
 $skills = isset($_POST["skills"]) ? $_POST["skills"] : [];
 $skill1 = $skill2 = $skill3 = $skill4 = null;
@@ -46,7 +47,7 @@ if (!preg_match("/^[a-zA-Z]{1,20}$/", $first_name)) {
 if (!preg_match("/^[a-zA-Z]{1,20}$/", $last_name)) {
     $errors[] = "Last name must be alphabetic and max 20 characters.";
 }
-if (!in_array($state, ["VIC","NSW","QLD","NT","WA","SA","TAS","ACT"])) {
+if (!in_array($state, ["Victoria","NSW","QLD","NT","WA","SA","TAS","ACT"])) {
     $errors[] = "Invalid state selected.";
 }
 if (!preg_match("/^[0-9]{4}$/", $postcode)) {

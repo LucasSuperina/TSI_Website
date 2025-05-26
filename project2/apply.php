@@ -8,14 +8,14 @@ $loggedIn = isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true;
 
 if ($loggedIn) {
     $username = $_SESSION['username'];
-    $stmt = $conn->prepare("SELECT * FROM users WHERE Email = ?");
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
     
-    if ($result->num_rows > 0) {
-        $prefillData = $result->fetch_assoc();
-    }
+    
+    $prefillData = $result->fetch_assoc();
+    
 
     $stmt->close();
     $conn->close();
@@ -106,6 +106,7 @@ if ($loggedIn) {
                                 <li>Address: <?php echo htmlspecialchars($prefillData['StreetAddress'] . ', ' . $prefillData['Suburb'] . ', ' . $prefillData['State'] . ' ' . $prefillData['Postcode']); ?></li>
                                 <li>Email: <?php echo htmlspecialchars($prefillData['Email']); ?></li>
                                 <li>Phone: <?php echo htmlspecialchars($prefillData['PhoneNumber']); ?></li>
+                                <li>State: <?php echo htmlspecialchars($prefillData['State']); ?></li>
                                 <li>Skills: <?php echo implode(', ', array_filter([
                                     $prefillData['Skill1'],
                                     $prefillData['Skill2'],
