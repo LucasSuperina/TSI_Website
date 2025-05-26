@@ -22,6 +22,11 @@
             <img src="./styles/images/company_logo.png" alt="Terrible Software Limited Inc. logo">
             <a href="index.php">Terrible Software Inc.</a>
         
+<!--
+no situation was found where the NAV bar would be needed without the header,
+as such, this is why the nav bar is done here, and nav.inc is empty
+-->
+
             <nav class="navbar">
                 <ul class="nav-links">
                     <?php 
