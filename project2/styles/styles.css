@@ -256,8 +256,6 @@ figcaption {
 
 .contributions dt {
     padding: 15px;
-    font-size: 30pt;
-    font-weight: bold;
     background: rgba(0, 0, 0, 0.36);
     border-radius: 22px;
     min-width: 15%;
@@ -266,6 +264,9 @@ figcaption {
 .contributions p {
     text-align: center;
     line-height: 0px;
+
+    font-size: 30pt;
+    font-weight: bold;
 }
 
 .soup-image {
