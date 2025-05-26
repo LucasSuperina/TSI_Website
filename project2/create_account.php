@@ -149,11 +149,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <div class="glass-container">
             <?php
-                  if (function_exists('createHeader')) {
-                      createHeader("Create Account");
-                  } else {
-                      echo '<h1>Create Account</h1>';
-                  }
+                if (function_exists('createHeader')) {
+                    createHeader("Create Account");
+                } else {
+                    echo '<h1>Create Account</h1>';
+                }
             ?>
 
             <div class="content">
@@ -172,13 +172,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="form-group">
                             <label for="username">Username (for login):</label>
                             <input type="text" id="username" name="username" required
-                                   value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>">
+                                value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>">
                         </div>
                         <br>
                         <div class="form-group">
                             <label for="email">Email:</label>
                             <input type="email" id="email" name="email" required
-                                   value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
+                                value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
                         </div>
                         <br>
                         <div class="form-group">
@@ -192,25 +192,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                         <br>
 
-                        ---
-
                         <h3>Personal Information</h3>
                         <div class="form-group">
                             <label for="firstName">First Name:</label>
                             <input type="text" id="firstName" name="firstName" required
-                                   value="<?php echo isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : ''; ?>">
+                                value="<?php echo isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : ''; ?>">
                         </div>
                         <br>
                         <div class="form-group">
                             <label for="lastName">Last Name:</label>
                             <input type="text" id="lastName" name="lastName" required
-                                   value="<?php echo isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : ''; ?>">
+                                value="<?php echo isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : ''; ?>">
                         </div>
                         <br>
                         <div class="form-group">
                             <label for="dob">Date of Birth:</label>
                             <input type="date" id="dob" name="dob" required
-                                   value="<?php echo isset($_POST['dob']) ? htmlspecialchars($_POST['dob']) : ''; ?>">
+                                value="<?php echo isset($_POST['dob']) ? htmlspecialchars($_POST['dob']) : ''; ?>">
                         </div>
                         <br>
                         <div class="form-group">
@@ -226,31 +224,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="form-group">
                             <label for="streetAddress">Street Address:</label>
                             <input type="text" id="streetAddress" name="streetAddress" required
-                                   value="<?php echo isset($_POST['streetAddress']) ? htmlspecialchars($_POST['streetAddress']) : ''; ?>">
+                                value="<?php echo isset($_POST['streetAddress']) ? htmlspecialchars($_POST['streetAddress']) : ''; ?>">
                         </div>
                         <br>
                         <div class="form-group">
                             <label for="suburb">Suburb:</label>
                             <input type="text" id="suburb" name="suburb" required
-                                   value="<?php echo isset($_POST['suburb']) ? htmlspecialchars($_POST['suburb']) : ''; ?>">
+                                value="<?php echo isset($_POST['suburb']) ? htmlspecialchars($_POST['suburb']) : ''; ?>">
                         </div>
                         <br>
                         <div class="form-group">
                             <label for="state">State:</label>
                             <input type="text" id="state" name="state" required
-                                   value="<?php echo isset($_POST['state']) ? htmlspecialchars($_POST['state']) : ''; ?>">
+                                value="<?php echo isset($_POST['state']) ? htmlspecialchars($_POST['state']) : ''; ?>">
                         </div>
                         <br>
                         <div class="form-group">
                             <label for="postcode">Postcode:</label>
                             <input type="text" id="postcode" name="postcode" required
-                                   value="<?php echo isset($_POST['postcode']) ? htmlspecialchars($_POST['postcode']) : ''; ?>">
+                                value="<?php echo isset($_POST['postcode']) ? htmlspecialchars($_POST['postcode']) : ''; ?>">
                         </div>
                         <br>
                         <div class="form-group">
                             <label for="phoneNumber">Phone Number:</label>
                             <input type="tel" id="phoneNumber" name="phoneNumber" required
-                                   value="<?php echo isset($_POST['phoneNumber']) ? htmlspecialchars($_POST['phoneNumber']) : ''; ?>">
+                                value="<?php echo isset($_POST['phoneNumber']) ? htmlspecialchars($_POST['phoneNumber']) : ''; ?>">
                         </div>
                         <br>
 
