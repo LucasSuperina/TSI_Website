@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !$lockout) {
             <?php createHeader("User Account"); ?>
             
             <div class="content">
-                <div class="main">
+                <main class="main">
                     <h2>Login</h2>
                     
                     <?php if ($lockout): ?>
@@ -119,16 +119,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !$lockout) {
                                 <label for="password">Password:</label>
                                 <input type="password" id="password" name="password" required>
                             </div><br>
-                            <div class="form-group">
-                                <input type="submit" name="login" value="Login" class="login-btn">
-                            </div><br>
+                                <button type="submit" name="login" value="Login">Login</button><br>
                         </form>
                     <?php endif; ?>
                     
                     <div class="register-link">
                         <a href='create_account.php' style='margin-top: 1.5em; display: flex; padding: 0.6em 1.5em; background:rgba(248, 164, 155, 0.18); color: white; border-radius: 6px; text-decoration: none;'>No account yet?<strong> Register Here</strong></a>
                     </div>
-                </div>
+                </main>
             </div>
         </div>
     </div>
