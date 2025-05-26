@@ -657,3 +657,7 @@ aside h1 {
     margin-left: 0;
     align-items: flex-start;
 }
+
+.error-message {
+    color: red;
+}
