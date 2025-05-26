@@ -482,8 +482,9 @@ body.process_eoi{
 }
 
 form {
+    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     flex-direction: column;
 }
@@ -538,6 +539,13 @@ textarea {
 
 textarea:focus {
     outline: none;
+}
+
+.form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
 }
 
 /* Experimenting with button styles
@@ -756,4 +764,11 @@ body.jobs{
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/*--- align forms to the left ------*/
+.form-group {
+    text-align: left;
+    margin-left: 0;
+    align-items: flex-start;
 }

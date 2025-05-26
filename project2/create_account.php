@@ -119,7 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="submit" value="Create Account">
                     </form>
 
-                    <p>Already have an account? <a href="login.php">Login here</a></p>
+                    <p><a href='applicant_login.php' style='margin-top: 1.5em; display: flex; padding: 0.6em 1.5em; background:rgba(248, 164, 155, 0.18); color: white; border-radius: 6px; text-decoration: none;'>Already have an account?<strong>Login Here</strong></a><p>
                 </div>
             </div>
         </div>

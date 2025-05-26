@@ -131,22 +131,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="form-group">
                             <label for="username">Username:</label>
                             <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($username); ?>">
-                            <span style="color:red;"><?php echo $username_err; ?></span><br><br>
+                            <span style="color:red;"><?php echo $username_err; ?></span><br>
                         </div><br>
                         <div class="form-group">
                             <label for="password">Password:</label>
                             <input type="password" id="password" name="password">
-                            <span style="color:red;"><?php echo $password_err; ?></span><br><br>
+                            <span style="color:red;"><?php echo $password_err; ?></span><br>
                         </div><br>
                         <div class="form-group">
                             <label for="confirm_password">Confirm Password:</label>
                             <input type="password" id="confirm_password" name="confirm_password">
-                            <span style="color:red;"><?php echo $confirm_password_err; ?></span><br><br>
+                            <span style="color:red;"><?php echo $confirm_password_err; ?></span><br>
                         </div><br>
                         <div class="form-group">
-                            <label for="verify_code">Verification Code</label>
+                            <label for="verify_code">Verification Code:</label>
                             <input type="text" id="verify_code" name="verify_code" required>
-                            <span style="color:red;"><?php echo $verify_code_err; ?></span><br><br>
+                            <span style="color:red;"><?php echo $verify_code_err; ?></span><br>
                         </div><br>
                         <button type="submit" name="register">Register</button>
                     </form>

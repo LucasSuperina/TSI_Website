@@ -1,70 +1,6 @@
 <!--LUCAS SUPERINA 105914669-->
 <!--PUJAN KUKADIYA 105920242-->
-
 <?php
-function display_jobs_page($_conn) {
-    echo '<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Pujan Kukadiya 105920242, LUCAS SUPERINA 105914669">
-    <meta name="description" content="A job listing page for Terrible Software Inc., which lists all the available positions the company is hiring">
-    <meta name="keywords" content="Jobs, Hiring, Position, Machine Learning, Software Developer">
-    <link rel="stylesheet" href="./styles/styles.css">
-    <title>Terrible Software Inc - Jobs</title>
-</head>
-
-<body class="jobs">
-    <div class="container">
-        <div class="glass-container">
-            <header>
-                <div class="logo">
-                    <img src="./styles/images/company_logo.png" alt="Terrible Software Limited Inc. logo">
-                    <a href="index.php">Terrible Software Inc.</a>
-                
-                    <nav class="navbar">
-                        <ul class="nav-links">
-                            <li class="nav-link"><a href="index.php">Home</a></li>
-                            <li class="nav-link"><a href="about.php">About</a></li>
-                            <li class="nav-link active"><a href="jobs.php">Jobs</a></li>
-                            <li class="nav-link"><a href="apply.php">Apply</a></li>
-                            <li class="nav-link"><a href="applicant_login.php">User Account</a></li>
-                            <li class="nav-link"><a href="manage.php">Admin Account</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </header>
-
-            <div class="content">
-                <div class="main">
-                    <h1 id="job_listing_header">Job Listings</h1>';
-                    
-                    list_all_jobs($_conn);
-                    
-                    echo '
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <div class="container">
-            <div class="glass-container-footer">
-                <div class="footer">
-                    <ul>
-                        <li><a href="https://terrible-software-inc.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog?atlOrigin=eyJpIjoiZTBkZGQ2ODY2MzdlNGFkMWI1ODNiN2JjMDg1ZjNkYzkiLCJwIjoiaiJ9">Jira Project</a></li>
-                        <li><a href="https://github.com/LucasSuperina/TSI_Website" target="_blank">GitHub</a></li>
-                        <li><a href="mailto:info@terriblesoftwareinc.com">Email Us</a></li>
-                        <li>© 2025 Terrible Software Inc.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-</body>
-</html>';
-}
 
 function list_all_jobs($_conn) {
     $sql = "SELECT * FROM job_listing_info";
@@ -90,13 +26,13 @@ function job_listing($_listing, $_conn) {
     $_Essential_QSKA = get_point_list_from_type($_Reference_Number, "Essential QSKA", $_conn);
     $_Prefered_QSKA = get_point_list_from_type($_Reference_Number, "Preferred QSKA", $_conn);
 
-    echo '<aside class="job-item">';
-        echo "<h2>$_Title</h2>";
-        echo "<p>Location: $_Location</p>";
-        echo "<p>Salary: $_Salary_Formatted</p>";
-        echo "<p>Description: $_Description</p>";
-        echo "<p>Reports to: $_Reports_To</p>";
-        echo "<p>Reference Number: $_Reference_Number</p>";
+    echo '<aside class="job_listing">';
+        echo "<h2>".htmlspecialchars($_Title)."</h2>";
+        echo "<p>Location: ".htmlspecialchars($_Location)."</p>";
+        echo "<p>Salary: ".htmlspecialchars($_Salary_Formatted)."</p>";
+        echo "<p>Description: ".htmlspecialchars($_Description)."</p>";
+        echo "<p>Reports to: ".htmlspecialchars($_Reports_To)."</p>";
+        echo "<p>Reference Number: ".htmlspecialchars($_Reference_Number)."</p>";
         echo "<h2>Key Responsibilities</h2>";
         create_responsibilities_QSKA_list($Key_Responsibilities, TRUE);
         echo "<h2>Required Qualifications, Skills, Knowledge and Attributes</h2>";
@@ -128,7 +64,7 @@ function create_responsibilities_QSKA_list($_points, $_is_ul) {
     
     echo "<$list_tag>";
     foreach ($_points as $point) {
-        echo "<li>$point</li>";
+        echo "<li>".htmlspecialchars($point)."</li>";
     }  
     echo "</$list_tag>";
 }
