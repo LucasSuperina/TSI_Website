@@ -141,6 +141,6 @@
             </main>
         </div>
     </div>
-</body>
 
-<?php include "footer.inc"?>
+    <?php include "footer.inc"?>
+</body>
