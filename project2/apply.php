@@ -24,7 +24,7 @@
                 createHeader("Apply");
             ?>
 
-            <div class="content">
+            <main class="content">
                 <div class="main">
                     <h1>Application Form</h1>
                     <hr>
@@ -107,7 +107,7 @@
                         <button type="submit" name="submit">Apply</button>
                     </form>
                 </div>
-            </div>
+            </main>
         </div>
     </div>
     <?php
