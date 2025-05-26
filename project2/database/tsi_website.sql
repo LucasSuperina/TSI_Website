@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2025 at 02:53 AM
+-- Generation Time: May 26, 2025 at 02:25 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -151,34 +151,34 @@ INSERT INTO `job_listing_info_points` (`Point_ID`, `Reference Number`, `Point_Ty
 --
 
 CREATE TABLE `users` (
-  `EOInumber` INT(11) NOT NULL AUTO_INCREMENT,
-  `JobReferenceNumber` VARCHAR(50),
-  `FirstName` VARCHAR(100),
-  `LastName` VARCHAR(100),
-  `DOB` DATE,
-  `Gender` VARCHAR(20),
-  `StreetAddress` VARCHAR(255),
-  `Suburb` VARCHAR(100),
-  `State` VARCHAR(50),
-  `Postcode` VARCHAR(10),
-  `Email` VARCHAR(100),
-  `PhoneNumber` VARCHAR(20),
-  `Skill1` VARCHAR(100),
-  `Skill2` VARCHAR(100),
-  `Skill3` VARCHAR(100),
-  `Skill4` VARCHAR(100),
-  `OtherSkills` TEXT,
-  `Status` VARCHAR(50),
-  PRIMARY KEY (`EOInumber`)
+  `EOInumber` int(11) NOT NULL,
+  `JobReferenceNumber` varchar(50) DEFAULT NULL,
+  `FirstName` varchar(100) DEFAULT NULL,
+  `LastName` varchar(100) DEFAULT NULL,
+  `DOB` date DEFAULT NULL,
+  `Gender` varchar(20) DEFAULT NULL,
+  `StreetAddress` varchar(255) DEFAULT NULL,
+  `Suburb` varchar(100) DEFAULT NULL,
+  `State` varchar(50) DEFAULT NULL,
+  `Postcode` varchar(10) DEFAULT NULL,
+  `Email` varchar(100) DEFAULT NULL,
+  `PhoneNumber` varchar(20) DEFAULT NULL,
+  `Skill1` varchar(100) DEFAULT NULL,
+  `Skill2` varchar(100) DEFAULT NULL,
+  `Skill3` varchar(100) DEFAULT NULL,
+  `Skill4` varchar(100) DEFAULT NULL,
+  `OtherSkills` text DEFAULT NULL,
+  `Status` varchar(50) DEFAULT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `email`) VALUES
-(1, 'Jay', '105912265', 'jayk869@gmail.com'),
-(2, 'soup', '$2y$10$48j03BM3iBGYmMpzsoKRn.RFx6Nn/n8n1D7GBHQ.h0qmppVbsh7He', 'Soupmail@soup.com');
+INSERT INTO `users` (`EOInumber`, `JobReferenceNumber`, `FirstName`, `LastName`, `DOB`, `Gender`, `StreetAddress`, `Suburb`, `State`, `Postcode`, `Email`, `PhoneNumber`, `Skill1`, `Skill2`, `Skill3`, `Skill4`, `OtherSkills`, `Status`, `username`, `password`) VALUES
+(1, NULL, 'Jay', 'Jay', '2025-04-29', 'Female', '10 Downing Street', 'Melbourne', 'Victoria', '3030', 'a@gmail.com', '0411111111', 'HTML', '', '', '', '', 'Pending', 'jaNE', '$2y$10$xofpl4kU1UE.xOTVr.dQGe0hYkEYncXoOIBxrG9UMIj96Z1xZVhHe');
 
 --
 -- Indexes for dumped tables
@@ -213,9 +213,7 @@ ALTER TABLE `job_listing_info_points`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD PRIMARY KEY (`EOInumber`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -237,7 +235,7 @@ ALTER TABLE `job_listing_info_points`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `EOInumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
