@@ -42,6 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !$lockout) {
         if (password_verify($password, $user['password'])) {
             // Password is correct - reset attempts
             $_SESSION['login_attempts'] = 0;
+            $_SESSION['lockout_time'] = 0;
             $_SESSION['loggedin'] = true;
             $_SESSION['username'] = $username;
             $stmt->close();
@@ -63,10 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !$lockout) {
         $_SESSION['login_attempts']++;
         if ($_SESSION['login_attempts'] >= 3) {
             $_SESSION['lockout_time'] = time();
-            $error = "Too many failed attempts. Please try again in 60 seconds.";
-        } else {
-            $error = "User does not exist. Please check your username or register for an account.";
         }
+            $error = "User does not exist. Please check your username or register for an account.";
     }
     
     $stmt->close();
