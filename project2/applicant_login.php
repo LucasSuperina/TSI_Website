@@ -108,7 +108,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !$lockout) {
                         </article>
                     <?php endif; ?>
                     
-                    <?php if (!$lockout): ?>
+                    <?php 
+                    $is_logged_in = array_key_exists('loggedin', $_SESSION);
+
+                    if ($is_logged_in):
+                        if ($_SESSION['loggedin'] == true):
+                            echo "<p> hello ". $_SESSION['username'] ."</p>";
+
+                            echo "<a class='fake_button' href='logout.php'>Logout</a>";
+                        endif;
+                    elseif (!$lockout): 
+                    ?>
                         <form method="POST" action="applicant_login.php" class="login-form">
                             <div class="form-group">
                                 <label for="username">Username:</label>
