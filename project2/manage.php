@@ -72,7 +72,7 @@ if (session_status() == PHP_SESSION_NONE) {
             // Show login form if HR manager is not logged in
             if (!isset($_SESSION['hr_logged_in'])) {
                 echo '<div class="content">';
-                    echo '<div class="main">';
+                    echo '<main class="main">';
                         echo "<h2>HR Manager Login</h2>";
                         // Display login error if any
                         // Use htmlspecialchars to prevent XSS attacks
@@ -89,7 +89,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                     <input type="submit" name="login" value="Login">
                                 </form>';
                         echo "<a href='register_hr.php' style='margin-top: 1.5em; display: flex; padding: 0.6em 1.5em; background:rgba(248, 164, 155, 0.18); color: white; border-radius: 6px; text-decoration: none;'>No account yet?<strong>Register Here</strong></a>";
-                    echo '</div>';
+                    echo '</main>';
                 echo '</div>';
             echo '</div>';
             echo '</div>';
@@ -106,14 +106,14 @@ if (session_status() == PHP_SESSION_NONE) {
                 // Check if the query was successful
                 // & also if any rows were affected
                 if (mysqli_affected_rows($conn) > 0) {
-                    echo '<div class="confirmation_box">';
+                    echo '<aside class="confirmation_box">';
                     echo "<p>Deleted EOIs with Job Reference: $delete_job_ref</p>";
-                    echo '</div>';
+                    echo '</aside>';
                 } else {
                     // If no rows affected, it means no EOIs were found with that Job Reference
-                    echo '<div class="error_box">';
+                    echo '<aside class="error_box">';
                     echo "<p>No EOIs found with Job Reference: $delete_job_ref</p>";
-                    echo '</div>';
+                    echo '</aside>';
                 }
             }
 
@@ -123,9 +123,9 @@ if (session_status() == PHP_SESSION_NONE) {
                 $new_status = mysqli_real_escape_string($conn, $_POST['new_status']);
                 $query = "UPDATE eoi SET Status = '$new_status' WHERE EOInumber = '$eoi_number'"; //Updates the Status field (e.g., from New → Final) of a specific EOI application.
                 mysqli_query($conn, $query);
-                echo '<div class="confirmation_box">';
+                echo '<aside class="confirmation_box">';
                 echo "<p>Updated EOI Number: $eoi_number to Status: $new_status</p>";
-                echo '</div>';
+                echo '</aside>';
             }
             ?>
 
@@ -134,7 +134,7 @@ if (session_status() == PHP_SESSION_NONE) {
             <h1>Manage EOIs</h1>
             <hr>
             <div class="content">
-                <div class="main">
+                <main class="main">
                     <p>Use the forms below to manage EOIs.</p><br>
                     <!-- Form to search EOIs by job reference, name, or sort -->
                     <form method="GET" action="manage.php">
@@ -163,7 +163,7 @@ if (session_status() == PHP_SESSION_NONE) {
                             <input type="submit" name="delete" value="Delete">
                         </fieldset>
                     </form>
-                </div>
+                </main>
             </div>
 
 

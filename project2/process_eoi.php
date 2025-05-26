@@ -1,15 +1,9 @@
 <!--MAGGIE XIN YI LAW 103488683-->
-
+<!--Jay Kshirsagar 105912265: Fixed Duplicate Applications-->
 <?php
 // Start session
 session_start();
 require_once("settings.php");
-
-// Database connection
-// Check if the session is already started
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
 
 // Enable error reporting (for development only)
 ini_set('display_errors', 1);
@@ -71,6 +65,13 @@ if (in_array("Other", $skills) && empty($other_skills)) {
     $errors[] = "Please describe your 'Other' skill.";
 }
 
+// Connect to DB
+$conn = new mysqli($host, $username, $password, $database);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Ensure table exists
 $create_table = "
 CREATE TABLE IF NOT EXISTS eoi (
     EOInumber INT AUTO_INCREMENT PRIMARY KEY,
@@ -94,6 +95,31 @@ CREATE TABLE IF NOT EXISTS eoi (
 )";
 mysqli_query($conn, $create_table);
 
+// ✅ NEW: Check for duplicate submission
+$check_query = "SELECT * FROM eoi WHERE Email = ? AND JobReferenceNumber = ?";
+$check_stmt = $conn->prepare($check_query);
+$check_stmt->bind_param("ss", $email, $reference_number);
+$check_stmt->execute();
+$check_result = $check_stmt->get_result();
+
+if ($check_result->num_rows > 0) {
+    include_once("header.inc");
+    createHeader("Duplicate Submission");
+
+    echo '<div class="error_box">';
+    echo "<h2>Duplicate Application</h2>";
+    echo "<p>You have already applied for job <strong>$reference_number</strong> using this email address: <strong>$email</strong>.</p>";
+    echo "<p>If you believe this is an error, please contact support.</p>";
+    echo "<a href='apply.php' style='margin-top: 1.5em; display: inline-block; padding: 0.6em 1.5em; background: #c0392b; color: white; border-radius: 6px; text-decoration: none;'>Return to Application Form</a>";
+    echo "</div>";
+
+    include_once("footer.inc");
+    exit();
+}
+
+$check_stmt->close();
+
+// Insert into table
 $query = "INSERT INTO eoi (
     JobReferenceNumber, FirstName, LastName, DOB, Gender, StreetAddress, Suburb, State, Postcode, 
     Email, PhoneNumber, Skill1, Skill2, Skill3, Skill4, OtherSkills
@@ -104,7 +130,6 @@ mysqli_stmt_bind_param($stmt, "ssssssssssssssss",
     $reference_number, $first_name, $last_name, $dob, $gender, $street_address, $suburb, $state, $postcode,
     $email, $phone, $skill1, $skill2, $skill3, $skill4, $other_skills);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -122,12 +147,11 @@ mysqli_stmt_bind_param($stmt, "ssssssssssssssss",
     <div class="container">
         <div class="glass-container">
             <?php
-            // Check for validation errors
             if (count($errors) > 0) {
                 include_once("header.inc");
                 createHeader("Form Error");
             
-                echo '<div class="error_box">';
+                echo '<aside class="error_box">';
                 echo "<h2>Submission Error</h2>";
                 echo "<p>The following issues were found in your application:</p><ul style='text-align: left;'>";
                 foreach ($errors as $err) {
@@ -135,25 +159,24 @@ mysqli_stmt_bind_param($stmt, "ssssssssssssssss",
                 }
                 echo "</ul>";
                 echo "<a href='apply.php' style='margin-top: 1.5em; display: inline-block; padding: 0.6em 1.5em; background: #c0392b; color: white; border-radius: 6px; text-decoration: none;'>Return to Application Form</a>";
-                echo "</div>";
+                echo "</aside>";
             
                 include_once("footer.inc");
                 exit();
             }
-            // If no errors, proceed with database insertion
-            // Execute the prepared statement
+
             if (mysqli_stmt_execute($stmt)) {
                 $eoi_number = mysqli_insert_id($conn);
                 include_once("header.inc");
                 createHeader("Confirmation");
             
-                echo '<div class="confirmation_box">';
+                echo '<aside class="confirmation_box">';
                 echo "<h2>Application Submitted Successfully!</h2>";
                 echo "<p>Thank you, <strong>$first_name $last_name</strong>, for your application.</p>";
                 echo "<p>Your EOI Number is: <strong style='color: #e26d2a;'>$eoi_number</strong></p>";
                 echo "<p>A confirmation has been sent to <strong>$email</strong>.</p>";
                 echo "<a href='index.php' style='margin-top: 1.5em; display: inline-block; padding: 0.6em 1.5em; background: #2a7ae2; color: white; border-radius: 6px; text-decoration: none;'>Return to Home</a>";
-                echo "</div>";
+                echo "</aside>";
             
                 include_once("footer.inc");
             } else {
@@ -166,5 +189,4 @@ mysqli_stmt_bind_param($stmt, "ssssssssssssssss",
         </div>
     </div>
 </body>
-
-
+</html>

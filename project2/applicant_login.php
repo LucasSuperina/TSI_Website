@@ -1,5 +1,5 @@
-<!-- JAY KSHIRSAGAR 105912265 -->
-<!-- Pujan Kukadiya 105920242 -->
+<!-- PHP: JAY KSHIRSAGAR 105912265 -->
+<!-- CSS: Pujan Kukadiya 105920242 -->
 <!-- Part of Enhancements -->
 
 <?php
@@ -100,13 +100,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !$lockout) {
                     <h2>Login</h2>
                     
                     <?php if ($lockout): ?>
-                        <div class="error-message">
+                        <article class="error-message">
                             Account locked. Please try again in <?php echo htmlspecialchars($remaining_time); ?> seconds.
-                        </div>
+                        </article>
                     <?php elseif (!empty($error)): ?>
-                        <div class="error-message">
+                        <article class="error-message">
                             <?php echo htmlspecialchars($error); ?>
-                        </div>
+                        </article>
                     <?php endif; ?>
                     
                     <?php if (!$lockout): ?>
