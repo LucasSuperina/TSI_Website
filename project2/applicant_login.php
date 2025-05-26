@@ -95,6 +95,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !$lockout) {
                 <div class="main">
                     <h2>Login</h2>
                     
+                    <article class="error-message">
+                        <?php if ($lockout): ?>
+                            <p>Account locked. Please try again in <?php echo htmlspecialchars($remaining_time); ?> seconds. </p>
+                        <?php elseif (!empty($error)): 
+                            echo htmlspecialchars($error) 
+                        endif; ?>
+                    <article>
+
+
                     <?php if ($lockout): ?>
                         <div class="error-message">
                             Account locked. Please try again in <?php echo htmlspecialchars($remaining_time); ?> seconds.
@@ -124,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !$lockout) {
                     <div class="register-link">
                         <a href="create_account.php">Don't have an account? <strong>Create one here</strong></a>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </div>
