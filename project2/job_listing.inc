@@ -40,7 +40,7 @@ function job_listing($_listing, $_conn) {
         create_responsibilities_QSKA_list($_Essential_QSKA, FALSE);
         echo "<h3>Preferable</h3>";
         create_responsibilities_QSKA_list($_Prefered_QSKA, FALSE);
-    echo '<button class="button" onclick="location.href=\'apply.php\'">Apply Now</button>';
+    echo "<a class='fake_button' href='apply.php'>Apply Now</a>";
     echo "</article>";
     echo "<br><br>";
 }
