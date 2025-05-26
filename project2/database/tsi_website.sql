@@ -151,10 +151,25 @@ INSERT INTO `job_listing_info_points` (`Point_ID`, `Reference Number`, `Point_Ty
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `email` varchar(100) NOT NULL
+  `EOInumber` INT(11) NOT NULL AUTO_INCREMENT,
+  `JobReferenceNumber` VARCHAR(50),
+  `FirstName` VARCHAR(100),
+  `LastName` VARCHAR(100),
+  `DOB` DATE,
+  `Gender` VARCHAR(20),
+  `StreetAddress` VARCHAR(255),
+  `Suburb` VARCHAR(100),
+  `State` VARCHAR(50),
+  `Postcode` VARCHAR(10),
+  `Email` VARCHAR(100),
+  `PhoneNumber` VARCHAR(20),
+  `Skill1` VARCHAR(100),
+  `Skill2` VARCHAR(100),
+  `Skill3` VARCHAR(100),
+  `Skill4` VARCHAR(100),
+  `OtherSkills` TEXT,
+  `Status` VARCHAR(50),
+  PRIMARY KEY (`EOInumber`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
