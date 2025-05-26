@@ -127,7 +127,7 @@ mysqli_stmt_bind_param($stmt, "ssssssssssssssss",
                 include_once("header.inc");
                 createHeader("Form Error");
             
-                echo '<div class="error_box">';
+                echo '<aside class="error_box">';
                 echo "<h2>Submission Error</h2>";
                 echo "<p>The following issues were found in your application:</p><ul style='text-align: left;'>";
                 foreach ($errors as $err) {
@@ -135,7 +135,7 @@ mysqli_stmt_bind_param($stmt, "ssssssssssssssss",
                 }
                 echo "</ul>";
                 echo "<a href='apply.php' style='margin-top: 1.5em; display: inline-block; padding: 0.6em 1.5em; background: #c0392b; color: white; border-radius: 6px; text-decoration: none;'>Return to Application Form</a>";
-                echo "</div>";
+                echo "</aside>";
             
                 include_once("footer.inc");
                 exit();
@@ -147,13 +147,13 @@ mysqli_stmt_bind_param($stmt, "ssssssssssssssss",
                 include_once("header.inc");
                 createHeader("Confirmation");
             
-                echo '<div class="confirmation_box">';
+                echo '<aside class="confirmation_box">';
                 echo "<h2>Application Submitted Successfully!</h2>";
                 echo "<p>Thank you, <strong>$first_name $last_name</strong>, for your application.</p>";
                 echo "<p>Your EOI Number is: <strong style='color: #e26d2a;'>$eoi_number</strong></p>";
                 echo "<p>A confirmation has been sent to <strong>$email</strong>.</p>";
                 echo "<a href='index.php' style='margin-top: 1.5em; display: inline-block; padding: 0.6em 1.5em; background: #2a7ae2; color: white; border-radius: 6px; text-decoration: none;'>Return to Home</a>";
-                echo "</div>";
+                echo "</aside>";
             
                 include_once("footer.inc");
             } else {

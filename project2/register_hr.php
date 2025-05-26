@@ -123,7 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 createHeader("HR Manager Registration");
             ?>
             <div class="content">
-                <div class="main">
+                <main class="main">
                     <h2>HR Manager Registration</h2>
                     <hr><br><br>
                     <!-- Registration Form -->
@@ -156,7 +156,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo "<p style='color:green;'>$success_msg</p>";
                     }
                     ?>
-                </div>
+                </main>
             </div>
         </div>
     </div>
