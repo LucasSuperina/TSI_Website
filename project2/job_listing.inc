@@ -24,7 +24,7 @@
         $_Essential_QSKA = get_point_list_from_type($_Reference_Number, "Essential QSKA", $_conn);
         $_Prefered_QSKA = get_point_list_from_type($_Reference_Number, "Preferred QSKA", $_conn);
 
-        echo '<article class="job-item">';
+        echo '<article class="job_listing">';
             echo "<h2>$_Title</h2>";
             echo "<p>Location: $_Location</p>";
             echo "<p>Salary: $_Salary_Formatted</p>";
