@@ -117,10 +117,10 @@
                                 <td>Souls, Elden Ring, PvP, Adventure</td>
                             </tr>
                             <tr>
-                                <th>Peak valorant rank but expressed as a zoomer meme.</th>
-                                <td>"So we're in cooper"</td>
-                                <td>"I'm diamond one"</td>
-                                <td colspan="2">(does not play valorant)</td>
+                                <th>Peak Valorant rank but expressed as a zoomer meme.</th>
+                                <td>"So we're in Cooper"</td>
+                                <td>"I'm Diamond one"</td>
+                                <td colspan="2">(does not play Valorant)</td>
                             </tr>
                             <tr>
                                 <th>Movies</th>
