@@ -170,15 +170,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <form method="post" action="">
                         <div class="form-group">
+<<<<<<< HEAD
                             <label for="username">Username (for login):</label>
                             <input type="text" id="username" name="username" required
                                    value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>">
+=======
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" name="username" required 
+                            value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>">
+>>>>>>> b4f62ca5cbed4dc9bf2a7efbdcace85ca5ed6f86
                         </div>
                         <br>
                         <div class="form-group">
                             <label for="email">Email:</label>
+<<<<<<< HEAD
                             <input type="email" id="email" name="email" required
                                    value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
+=======
+                            <input type="email" id="email" name="email" required 
+                            value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
+>>>>>>> b4f62ca5cbed4dc9bf2a7efbdcace85ca5ed6f86
                         </div>
                         <br>
                         <div class="form-group">
@@ -191,6 +202,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <input type="password" id="confirm_password" name="confirm_password" required>
                         </div>
                         <br>
+<<<<<<< HEAD
 
                         ---
 
@@ -279,6 +291,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <br>
 
                         <input type="submit" value="Create Account">
+=======
+                        <button type="submit" name="register">Register</button>
+>>>>>>> b4f62ca5cbed4dc9bf2a7efbdcace85ca5ed6f86
                     </form>
 
                     <p><a href='applicant_login.php' style='margin-top: 1.5em; display: flex; padding: 0.6em 1.5em; background:rgba(248, 164, 155, 0.18); color: white; border-radius: 6px; text-decoration: none;'>Already have an account?<strong>Login Here</strong></a><p>

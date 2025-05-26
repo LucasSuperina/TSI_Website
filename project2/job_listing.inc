@@ -26,7 +26,7 @@ function job_listing($_listing, $_conn) {
     $_Essential_QSKA = get_point_list_from_type($_Reference_Number, "Essential QSKA", $_conn);
     $_Prefered_QSKA = get_point_list_from_type($_Reference_Number, "Preferred QSKA", $_conn);
 
-    echo '<aside class="job_listing">';
+    echo '<article class="job_listing">';
         echo "<h2>".htmlspecialchars($_Title)."</h2>";
         echo "<p>Location: ".htmlspecialchars($_Location)."</p>";
         echo "<p>Salary: ".htmlspecialchars($_Salary_Formatted)."</p>";
@@ -40,8 +40,8 @@ function job_listing($_listing, $_conn) {
         create_responsibilities_QSKA_list($_Essential_QSKA, FALSE);
         echo "<h3>Preferable</h3>";
         create_responsibilities_QSKA_list($_Prefered_QSKA, FALSE);
-    echo '<button class="button" onclick="location.href=\'apply.php\'">Apply Now</button>';
-    echo "</aside>";
+    echo "<a class='fake_button' href='apply.php'>Apply Now</a>";
+    echo "</article>";
     echo "<br><br>";
 }
 

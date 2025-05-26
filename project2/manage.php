@@ -36,7 +36,6 @@ if (session_status() == PHP_SESSION_NONE) {
                 createHeader("Admin Account");
             ?>
 
-
             <?php
             // Initialize attempt tracking if not already set
             if (!isset($SESSION['attempts'])) {
@@ -86,7 +85,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                     <label>Password:</label>
                                     <input type="password" name="password" required>
                                     </div><br>
-                                    <input type="submit" name="login" value="Login">
+                                    <button type="submit" name="login" value="Login">Login</button><br>
                                 </form>';
                         echo "<a href='register_hr.php' style='margin-top: 1.5em; display: flex; padding: 0.6em 1.5em; background:rgba(248, 164, 155, 0.18); color: white; border-radius: 6px; text-decoration: none;'>No account yet?<strong>Register Here</strong></a>";
                     echo '</main>';
@@ -129,7 +128,7 @@ if (session_status() == PHP_SESSION_NONE) {
             }
             ?>
 
-            <button><a href="logout.php">Logout</a></button>
+            <a class='fake_button' href='logout.php'>Logout</a>
             <h2>Welcome, <?php echo $_SESSION['username']; ?>!</h2>
             <h1>Manage EOIs</h1>
             <hr>
@@ -224,8 +223,9 @@ if (session_status() == PHP_SESSION_NONE) {
             ?>
         </div>
     </div>
-</body>
-<?php
+    <?php
     include "footer.inc"
 ?>
+</body>
+
 </html>
