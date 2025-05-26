@@ -79,25 +79,27 @@
                 }
             }
             ?>
-    <h2>Login</h2>
-    <?php if (isset($error)) { echo "<p style='color: red;'>$error</p>"; } ?>
-        <form method="post" action="">
-            <div>
-                <label>Username:</label>
-                <input type="text" name="username" required>
-            </div>
-            <div>
-                <label>Password:</label>
-                <input type="password" name="password" required>
-            </div>
-            <div>
-                <input type="submit" value="Login">
-            </div>
-        </form>
-         <p><a href="create_account.php">Don't have an account? Create one here</a></p>
-    </body>
-    <?php
-        include "footer.inc"
-    ?>
+            <h2>Login</h2>
+            <?php if (isset($error)) { echo "<p style='color: red;'>$error</p>"; } ?>
+            <form method="post" action="">
+                <div>
+                    <label>Username:</label>
+                    <input type="text" name="username" required>
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input type="password" name="password" required>
+                </div>
+                <div>
+                    <input type="submit" value="Login">
+                </div>
+            </form>
+            <p><a href="create_account.php">Don't have an account? Create one here</a></p>
+        </div>
+    </div>
+</body>
+<?php
+    include "footer.inc"
+?>
 </html>
 
