@@ -148,7 +148,7 @@ mysqli_stmt_bind_param($stmt, "ssssssssssssssss",
         <div class="glass-container">
             <?php
             if (count($errors) > 0) {
-                include_once("header.inc");
+                include_once "header.inc";
                 createHeader("Form Error");
             
                 echo '<aside class="error_box">';
@@ -162,13 +162,13 @@ mysqli_stmt_bind_param($stmt, "ssssssssssssssss",
                 echo "</aside>";
                 echo "</div>";
                 echo "</div>";
-                include_once"footer.inc";
+                include_once "footer.inc";
                 exit();
             }
 
             if (mysqli_stmt_execute($stmt)) {
                 $eoi_number = mysqli_insert_id($conn);
-                include_once("header.inc");
+                include_once "header.inc";
                 createHeader("Confirmation");
             
                 echo '<aside class="confirmation_box">';
@@ -180,7 +180,7 @@ mysqli_stmt_bind_param($stmt, "ssssssssssssssss",
                 echo "</aside>";
                 echo "</div>";
                 echo "</div>";
-                include_once"footer.inc";
+                include_once "footer.inc";
             } else {
                 echo "<p>Something went wrong. Please try again later.</p>";
             }
