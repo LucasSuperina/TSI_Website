@@ -223,8 +223,9 @@ if (session_status() == PHP_SESSION_NONE) {
             ?>
         </div>
     </div>
-</body>
-<?php
+    <?php
     include "footer.inc"
 ?>
+</body>
+
 </html>
