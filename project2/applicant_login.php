@@ -29,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !$lockout) {
     $username = $_POST['username'];
     $password = $_POST['password'];
     
+    try {
     // Prepare statement to prevent SQL injection
     $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
     $stmt->bind_param("s", $username);
@@ -64,12 +65,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !$lockout) {
             $_SESSION['lockout_time'] = time();
             $error = "Too many failed attempts. Please try again in 60 seconds.";
         } else {
-            $error = "Invalid username or password";
+            $error = "User does not exist. Please check your username or register for an account.";
         }
     }
     
     $stmt->close();
     $conn->close();
+    } catch (mysqli_sql_exception $e) {
+        // User does not exist
+    $error = "Invalid. User does not exist.";    }
 }
 ?>
 
@@ -122,7 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !$lockout) {
                     <?php endif; ?>
                     
                     <div class="register-link">
-                        <a href='create_account.php' style='margin-top: 1.5em; display: flex; padding: 0.6em 1.5em; background:rgba(248, 164, 155, 0.18); color: white; border-radius: 6px; text-decoration: none;'>No account yet?<strong>Register Here</strong></a>
+                        <a href='create_account.php' style='margin-top: 1.5em; display: flex; padding: 0.6em 1.5em; background:rgba(248, 164, 155, 0.18); color: white; border-radius: 6px; text-decoration: none;'>No account yet?<strong> Register Here</strong></a>
                     </div>
                 </div>
             </div>
