@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="./styles/styles.css">
     <title>Terrible Software Inc - Home</title>
 </head>
-
 <body class="home">
     <div class="container">
         <div class="glass-container">
@@ -50,5 +49,6 @@
             </main>
         </div>
     </div>
+
+    <?php include "footer.inc"?>
 </body>
-<?php include "footer.inc"?>
