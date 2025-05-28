@@ -38,7 +38,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
             <?php
             // Initialize attempt tracking if not already set
-            if (!isset($SESSION['attempts'])) {
+            if (!isset($_SESSION['attempts'])) {
                 $_SESSION['attempts'] = 0;
             }
             $login_error = "";
