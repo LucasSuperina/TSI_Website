@@ -28,10 +28,11 @@
                 <main class="main">
                     <h1>Application Form</h1>
                     <hr>
-                    <form action="process_eoi.php" method="post" > 
+                    <form action="process_eoi.php" method="post" novalidate="novalidate"> 
                         <br>
                         <label for="job-reference-number">Job Reference No. : </label>
                         <select name="job-reference-number" id="job-reference-number">
+                            <option value="" selected hidden>Select Job Reference No.</option>
                             <option value="ML123">AI/ML Engineer - ML123</option>
                             <option value="SD123">Software Engineer - SD123</option>
                         </select><br><br>

@@ -41,7 +41,12 @@ if (session_status() == PHP_SESSION_NONE) {
             if (!isset($_SESSION['attempts'])) {
                 $_SESSION['attempts'] = 0;
             }
+            if (!isset($_SESSION['lockout_time'])) {
+                $_SESSION['lockout_time'] = 0;
+            }
             $login_error = "";
+            $lockout = false;
+            $remaining_time = 0;
 
             // Handle login submission
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
@@ -59,13 +64,19 @@ if (session_status() == PHP_SESSION_NONE) {
                     $_SESSION['attempts'] = 0;
                 } else {
                     $_SESSION['attempts']++;
+                    // Set lockout time if 3 failed attempts reached
+                    if ($_SESSION['attempts'] >= 3 && $_SESSION['lockout_time'] == 0) {
+                        $_SESSION['lockout_time'] = time();
+                    }
                     $login_error = "Invalid username or password.";
                 }
             }
 
             // Lockout after 3 failed attempts
-            if ($_SESSION['attempts'] >= 3) {
-                die("<h3>Access denied. Too many failed login attempts.</h3>");
+            if ($_SESSION['attempts'] >= 3 && (time() - $_SESSION['lockout_time']) < 60) {
+                $lockout = true;
+                $remaining_time = 60 - (time() - $_SESSION['lockout_time']);    
+                die("<h3>Access denied. Too many failed login attempts. Please try again after $remaining_time seconds.</h3>");
             }
 
             // Show login form if HR manager is not logged in
@@ -221,12 +232,9 @@ if (session_status() == PHP_SESSION_NONE) {
                     echo "<p>No EOIs found matching the criteria.</p>";
                 }
             }
-            ?>
-        </div>
-    </div>
-    <?php
-    include "footer.inc"
+    include "footer.inc";
 ?>
+</body>
 </body>
 
 </html>
